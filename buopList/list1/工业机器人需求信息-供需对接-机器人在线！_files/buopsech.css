@@ -1,0 +1,118 @@
+.buop-sech{
+  color: #000;
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 10px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.buop-sech a{
+  margin-right: 10px;
+}
+.buop-sech a:active {
+  text-decoration: none;
+  color: #e4393c;
+}
+.buop-sech a:hover,.buop-sech a:focus {
+  color: #e4393c ;
+}
+.buop-sech-a {
+  color: #e4393c;
+}
+.info-bt div{
+  font-size: 16px;
+  /* color: #000;
+  opacity: .7; */
+}
+.ob-top-left .list dd {
+  float: left;
+  padding: 0px 15px;
+  width: 100%;
+}
+.sign-content li dl dd a{
+  font-size: .4rem;
+}
+
+.form-inline .form-group {
+  margin-bottom: 15px;
+  vertical-align: top;
+}
+.select2-container{
+  width: 30% !important;
+}
+.session-bar .btn-baoming{
+  width: 100%;
+}
+.session-bar .btn-baoming:before {
+  top: 0;
+  left: -52px;
+  width: 0;
+  height: 0;
+  border-width: 26px;
+  border-style: solid;
+  border-color: transparent #2f8ded transparent transparent;
+  transform: scaleX(.6);
+  transform-origin: 100% 50%;
+}
+.session-bar .btn-baoming:before {
+  position: absolute;
+  content: ' ';
+}
+.btn-baoming, .btn-baoming:hover {
+  border: 1px solid #2f8ded;
+  background:#2f8fe5 ;
+  color: #fff;
+}
+ .session-bar .btn-baoming:disabled:before {
+  border-color: transparent #e5e5e5 transparent transparent;
+}
+.session-bar .btn-baoming:disabled {
+  background: #e5e5e5;
+}
+.width-a{
+  width: 53%;
+  font-size: 13px;
+  right: -285px;
+}
+.width-a span{
+  width: 40%;
+}
+
+@media screen and (max-width: 768px){
+  .express-date{
+    height: 30px;
+    line-height: 30px;
+  }
+ .express-status-address {
+    color: #666666;
+    font-size: 14px;
+    margin: 5px 0;
+}
+  .express-container{
+    margin: 10px 0px 20px;
+  }
+  .buop-video-m video{
+    max-width: 100%;
+  }
+  .buop-apply .box .dd-td {
+    width: 100%;
+  }
+  .record dl, .session dd, .session-title .text, .ob-detail-num{
+    font-size: .4rem;
+  }
+  .classification_fix{
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .buop-sech a {
+    margin-right: 0;
+    width: 23%;
+    display: inline-block;
+    text-align: center;
+}
+.buop-sech {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* background-color: red;
+    line-height: 45px; */
+}
+}

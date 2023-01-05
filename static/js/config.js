@@ -1,0 +1,1 @@
+var barseUrl =`http://boot.shningmi.com`

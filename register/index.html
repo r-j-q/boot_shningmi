@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)http://user.imrobotic.com/register?redirect_uri=http%3A%2F%2Fwww.imrobotic.com%2F -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>机器人在线</title>
+    
+    <meta name="author" content="机器人在线">
+    <meta name="keywords" content="{$keywords}">
+    <meta name="description" content="{$description}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1,user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    <meta name="baidu-site-verification" content="DiRYNrTCNs">
+    <meta name="baidu-site-verification" content="DCHaExB26v">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <link type="image/x-icon" href="https://www.imrobotic.com/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" type="text/css" href="./机器人在线_files/bootstrap.css" media="all">
+    <link rel="stylesheet" type="text/css" href="./机器人在线_files/head_common_top.css" media="all">
+    <link rel="stylesheet" type="text/css" href="./机器人在线_files/head_common_footer.css" media="all">
+    <script src="./机器人在线_files/hm.js"></script><script type="text/javascript" src="./机器人在线_files/jquery.min.js"></script>
+    <script src="./机器人在线_files/layer.js"></script><link rel="stylesheet" href="./机器人在线_files/layer.css" id="layuicss-skinlayercss">
+    <script src="./机器人在线_files/msgCode.js"></script>
+    <script type="text/javascript" src="./机器人在线_files/common.js"></script>
+    
+    <!--以上为公用样式及js-->
+
+    <!--以上为公共文件-->
+
+    <link rel="stylesheet" type="text/css" href="./机器人在线_files/reglogin.css" media="all">
+<link rel="stylesheet" type="text/css" href="./机器人在线_files/iconfont.css" media="all">
+<script type="text/javascript" src="./机器人在线_files/validate.min.js"></script>
+<script type="text/javascript" src="./机器人在线_files/messages_zh.js"></script>
+<script type="text/javascript" src="./机器人在线_files/expand.js"></script>
+
+<style>
+    .error {
+        color: red;
+    }
+</style>
+       
+</head>
+<body>
+<!---让ie识别html5 让ie识别css3-->
+<!--[if IE]>
+<script type="text/javascript" src="http://cdn.imrobotic.com/user_login/pc/user/js/html5shiv.js"></script>
+<script type="text/javascript" src="http://cdn.imrobotic.com/user_login/pc/user/js/respond.min.js"></script>
+<![endif]-->
+ <div id="headers">
+     <div id="heads" class="clearfix">
+        <a class="has fr" href="../login/index.html">已有账号？请登录</a>
+        <div id="menu-logo">
+            <a href="../static/images/logo.png"></a>
+            <span class="menu-logo-text">
+               账户注册
+            </span>
+        </div>
+    </div>
+    </div>
+<div class="reset_bg">
+<div class="reset_mian_bg clearfix" id="content">
+    <section id="reg" class="clearfix">
+        <div class="editor clearfix">
+                <div class="reg_div">
+                    <div class="reg-title">
+                        账户注册
+                    </div>
+                    <div class="reg_col">
+                        <form class="cmxform form-horizontal" id="signupForm" action="http://user.imrobotic.com/register" enctype="multipart/form-data" novalidate="novalidate">
+                            <input type="hidden" name="act" value="act_register">
+                            <!-- <input type="hidden" name="back_act" value="{$back_act}" /> -->
+                            <div class="form-group">
+                                <label class="texts col-sm-2 control-label"> <span><b class="red">*</b> 选择身份：</span></label>
+                                <div class="col-sm-5">
+                                    <select name="user_type" class="pass_input form-control" required="" aria-required="true">
+                                        <option value="">请选择您的身份</option>
+                                                                                                                                    <option value="3">品牌商</option>
+                                                                                            <option value="0">集成商</option>
+                                                                                            <option value="5">终用户</option>
+                                                                                            <option value="4">学习者</option>
+                                                                                            <option value="2">院校</option>
+                                                                                            <option value="7">求职者</option>
+                                                                                                                        </select>
+                                </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="texts col-sm-2 control-label"> <span><b class="red">*</b> 手机号码：</span></label>
+                              <div class="col-sm-5">
+                                <input id="user_name" name="telephone" type="text" maxlength="11" class="pass_input form-control" placeholder="请输入常用手机号码">
+                                <span class="gray">11位大陆手机号码</span>
+                              </div>
+                            </div>
+                         
+                          <div class="form-group">
+                                <label class="texts col-sm-2 control-label"> <span><b class="red">*</b> 设置密码：</span></label>
+                                <div class="col-sm-5">
+                                    <input id="password" name="password" maxlength="20" type="password" class="pass_input form-control" autocomplete="off">
+                                    <span class="gray">
+                                    密码为6-20位数字+字母组合
+                                    </span>
+                                </div>
+                            </div>
+                          <div class="form-group">
+                                <label class="texts col-sm-2 control-label" for="telephoneb"><span><b class="red">*</b> 手机验证码：</span></label>
+                                <div class="col-sm-3">
+                                    <div class="input-group input-code">
+                                    <input id="telephone_code" name="telephone_code" type="text" class="pass_inputs form-control" autocomplete="off">
+                                    <span class="getcode input-group-addon" id="get_code">获取校验码</span>
+                                    </div>
+                                </div>
+                            </div>
+                         <div class="form-group">
+                                <div class="col-sm-5 col-sm-offset-2">
+                                <input type="checkbox" id="agree" name="agree" checked="checked">
+                                <label for="agree">我同意
+                                    <a class="go" target="_blank" href="https://www.imrobotic.com/about/protocol">《机器人在线协议》</a></label>
+                                </div>
+                            </div>
+                          <div class="form-group">
+                              <div class="col-sm-5 col-sm-offset-2">
+                                <input class="pass_sumbit" type="submit" value="提交">
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section></div>
+    
+
+<script type="text/javascript">
+var code_token = 'eyJpdiI6ImtMbHh2ZTNoZEJMNnJ4UDZCVEgrcGc9PSIsInZhbHVlIjoibGd3ZEtJQ1VxS2lNODJVRHExczdjZz09IiwibWFjIjoiZTYzZDM5YTNhMjliNzM0N2Y3NTc5MTU1YWY3OTI5NzNmYmJmNDA4N2U0NWQ1NzljMmNlYmQ0ZDZhYmQ1YmUyYiJ9';
+    $(function(){ 
+        doregister();
+    })
+</script>
+</div>
+
+<div id="common_footer" class="hidden-xs">
+    <p class="common_tetx">
+        <a target="_blank" href="https://www.imrobotic.com/">机器人在线官网</a>
+        <a target="_blank" href="http://cs.imrobotic.com/">机器人在线商城</a>
+        <a target="_blank" href="https://www.imrobotic.com/news/">机器人在线资讯</a>
+        <a target="_blank" href="https://www.imrobotic.com/college/">机器人在线学院</a>
+        <a target="_blank" href="https://www.imrobotic.com/anli/">机器人在线应用</a>
+        <a target="_blank" href="https://www.imrobotic.com/jiqiren/">机器人在线机器人</a>
+        <a target="_blank" href="https://www.imrobotic.com/brand/">机器人在线品牌分类</a>
+    </p>
+     <p class="common_footer_gray">沪ICP备14010576号-1 | copyright © 机器人在线版权所有. all right reserved.</p>
+</div>
+
+<script type="text/javascript">
+
+    //ie8以下 ，提示更新浏览器
+    //低版本浏览器提示
+    if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE6.0")
+    {
+        $.alert('您正在使用低版本浏览器,为了保证您能有更好的访问效果,我们建议您使用谷歌Chrome浏览器、火狐Firefox浏览器或者IE8以上版本浏览器！');
+    }
+    else if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE7.0")
+    {
+        $.alert('您正在使用低版本浏览器,为了保证您能有更好的访问效果,我们建议您使用谷歌Chrome浏览器、火狐Firefox浏览器或者IE8以上版本浏览器！');
+    }else if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE8.0")
+    {
+        $.alert('您正在使用低版本浏览器,为了保证您能有更好的访问效果,我们建议您使用谷歌Chrome浏览器、火狐Firefox浏览器或者IE8以上版本浏览器！');
+    }
+   
+    //百度商桥
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?19ae894f01d1e10994813d3c94c65df9";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+</script>
+
+
+</body></html>

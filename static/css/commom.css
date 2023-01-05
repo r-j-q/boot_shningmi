@@ -1,0 +1,63 @@
+.nav > li { 
+    padding: 0 4px;
+}
+
+.technicalservice {
+    position: relative;
+}
+
+.technicalservicelist {
+    position: absolute;
+    top: 50px;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    display: none;
+    z-index: 999;
+
+}
+
+.technicalservicelist li {
+    cursor: pointer;
+}
+
+.technicalservicelist li :hover {
+    color: #333;
+    background-color: #fff;
+}
+
+.technicalservicelist li a {
+    font-size: 12px;
+    height: 100%;
+
+}
+
+.technicalservice_pxxy {
+    position: relative;
+}
+
+.technicalservicelist_pxxy {
+    position: absolute;
+    top: 50px;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    display: none;
+    z-index: 999;
+
+}
+
+.technicalservicelist_pxxy li {
+    cursor: pointer;
+}
+
+.technicalservicelist_pxxy li :hover {
+    color: #333;
+    background-color: #fff;
+}
+
+.technicalservicelist_pxxy li a {
+    font-size: 12px;
+    height: 100%;
+
+}

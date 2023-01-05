@@ -1,0 +1,58 @@
+{
+  "id": "3847179",
+  "name": "pc_h5",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "201225",
+      "name": "3.1首页-选中",
+      "font_class": "weibiaoti12",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "405753",
+      "name": "youjian0",
+      "font_class": "youjian",
+      "unicode": "e6b7",
+      "unicode_decimal": 59063
+    },
+    {
+      "icon_id": "2077545",
+      "name": "向上_箭头",
+      "font_class": "wei-",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "4608988",
+      "name": "QQ",
+      "font_class": "qq",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "14915051",
+      "name": "留言板",
+      "font_class": "liuyan",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "16286928",
+      "name": "二维码",
+      "font_class": "erweima",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "552287",
+      "name": "dianhua",
+      "font_class": "dianhua",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    }
+  ]
+}

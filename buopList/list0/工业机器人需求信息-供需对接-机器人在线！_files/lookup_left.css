@@ -1,0 +1,83 @@
+  .list_cont {
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+  }
+  .list_cont li{
+    height: 30px;
+    line-height: 30px;
+  }
+  .list_cont li a{
+    height: auto;
+    line-height: unset;
+  }
+  .lookup_A{
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+  }
+
+  .classi_list .clasbox_right .brand_left{
+    line-height: 0px;
+  }
+
+  .brand_nav .numA-Z p {
+    line-height: 25px;
+    height: 25px;
+  }
+  .brand_nav .brand_side .numA-Z>p:hover {
+    line-height: 25px;
+    height: 25px;
+  }
+  .brand_col{
+    width: 100%;
+  }
+  .brand_nav{
+    width: 100%;
+  }
+  .brand_col .brand_list{
+    width: 230px;
+  }
+  .brand_left {
+    width: 260px;
+  }
+
+  .brand_left—a{
+    display: none;
+  }
+
+  .brand_col .list_cont li a {
+    display: block;
+    font-size: 16px;
+  }
+  .none_A{
+    display: block;
+  }
+  .classi_list .clasbox_right {
+    padding-right: 50px !important;
+}
+  
+.classi_list {
+  border-bottom: 1px solid #eee !important;
+}
+.clasbox_jcspa{
+  display: inline-block;
+  width: 25%;
+  position: relative;
+  top: -40px;
+  left: 80px;
+}
+
+  @media screen and (max-width: 768px){
+    .none_A , .newindex_ad {
+      display:none !important;
+    }
+  }
