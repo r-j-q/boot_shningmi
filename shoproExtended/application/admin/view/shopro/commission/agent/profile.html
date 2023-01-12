@@ -1,0 +1,1380 @@
+<link rel="stylesheet" href="__CDN__/assets/addons/shopro/libs/element/element.css">
+<link rel="stylesheet" href="__CDN__/assets/addons/shopro/libs/common.css">
+<style>
+    #agentDetail {
+        color: #666;
+        background-color: #f1f4f6;
+        font-size: 13px;
+        padding: 10px;
+        font-family: Noto Sans SC;
+        font-weight: 400;
+    }
+
+    .agent-image .el-image {
+        border-radius: 50%;
+    }
+
+    .font-weight {
+        font-weight: 500;
+    }
+
+    .profile-block {
+        background: #fff;
+        padding: 18px 0;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.06);
+        border-radius: 6px;
+        margin-bottom: 10px;
+    }
+
+    .agent-message {
+        flex-direction: column;
+        align-items: center;
+        min-height: 545px;
+        padding-top: 30px;
+    }
+
+    .agent-image {
+        width: 98px;
+        height: 98px;
+        border: 1px solid #E6E6E6;
+        box-sizing: border-box;
+        border-radius: 49px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .agent-level-image {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    .agent-name {
+        font-size: 20px;
+        line-height: 20px;
+        margin-bottom: 14px;
+
+
+        color: #626066;
+    }
+
+    .agent-list-item {
+        margin-bottom: 16px;
+        font-size: 12px;
+    }
+
+    .agent-list-item-more {
+        margin-bottom: 22px;
+        align-items: flex-start;
+        font-size: 12px;
+    }
+
+    .agent-list-item-tip {
+        font-size: 12px;
+        line-height: 12px;
+        color: #58575A;
+        margin-right: 14px;
+        width: 66px;
+        display: flex;
+        align-items: center;
+    }
+
+    .tip-span {
+        flex: 1;
+    }
+
+    .agent-list-item-container {
+        flex: 1;
+    }
+
+    .agent-list-item-form {
+        font-size: 14px;
+        /* line-height: 14px; */
+        color: #626066;
+        margin-right: 14px;
+    }
+
+    .agent-commission_rules-item {
+        margin-right: 12px;
+    }
+
+    .agent-commission_rules-rate {
+        font-size: 16px;
+        line-height: 16px;
+        color: #626066;
+        margin-top: 14px;
+    }
+
+
+    .agent-apply {
+        padding: 18px 20px;
+        min-height: 545px;
+        height: 545px;
+        overflow-y: auto;
+    }
+
+    .agent-apply-title {
+        font-size: 14px;
+        line-height: 14px;
+        color: #666666;
+        padding: 0 0 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .agent-apply-item-tip {
+        font-size: 12px;
+        line-height: 12px;
+        color: #58575A;
+        margin-bottom: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .agent-apply-item-tip-delete {
+        color: #ED655F;
+        cursor: pointer;
+    }
+
+    .agent-apply-item-form {
+        font-size: 14px;
+        line-height: 14px;
+        color: #626066;
+        margin-bottom: 26px;
+    }
+
+    .agent-apply-item:last-of-type .agent-apply-item-form {
+        margin-bottom: 0;
+    }
+
+    .agent-apply-item-identity {
+        width: 153px;
+        min-height: 80px;
+        background: #E6E6E6;
+        border-radius: 4px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+
+    .agent-dashboard {
+        padding: 0 20px 18px;
+        min-height: 410px;
+    }
+
+    .agent-dashboard-contanmer {
+        border-bottom: 1px dashed #E6E6E6;
+    }
+
+    .agent-dashboard-title,
+    .agent-assets-title {
+        font-size: 14px;
+        line-height: 14px;
+        color: #666666;
+        padding: 20px 0px;
+    }
+
+    .agent-dashboard-item-tip {
+        font-size: 12px;
+        line-height: 12px;
+        color: #58575A;
+        margin-bottom: 14px;
+    }
+
+    .agent-dashboard-item-form {
+        font-size: 22px;
+        line-height: 22px;
+        color: #626066;
+        margin-bottom: 20px;
+        font-weight: 500;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .agent-table {
+        margin-bottom: 0;
+    }
+
+    .edit-input {
+        width: 140px;
+    }
+
+    .shopro-edit-cancel {
+        color: #848089;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    .el-popover {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .el-dialog {
+        width: fit-content;
+    }
+
+    .el-dialog__header {
+        height: 50px;
+        line-height: 50px;
+        border-bottom: 1px solid #e6e6e6;
+        padding: 0 20px;
+        color: #626066;
+        font-size: 14px;
+    }
+
+    .el-dialog__headerbtn {
+        top: 0;
+        font-size: 18px;
+        color: #C4C4C4;
+    }
+
+    .el-dialog__body {
+        font-size: 13px;
+        color: #444;
+        padding: 14px 20px;
+        overflow-y: auto;
+    }
+
+    .custom-tree-header {
+        height: 40px;
+        background: #F9F9F9;
+        border: 1px solid #e6e6e6;
+    }
+
+    .expanded.el-tree-node__expand-icon.el-icon-caret-right,
+    .el-tree-node__expand-icon.el-icon-caret-right {
+        display: none;
+    }
+
+    .el-tree-node__content {
+        height: 44px;
+        padding: 0 !important;
+    }
+
+    .table-image {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin: 0 10px;
+    }
+
+    .drag-item {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #e6e6e6;
+        border-top: none;
+    }
+
+    .expanded-width-id {
+        width: 70px;
+        line-height: 44px;
+        text-align: center;
+    }
+
+    .expanded-width-level {
+        width: 100px;
+        line-height: 44px;
+        text-align: center;
+    }
+
+    .expanded-width-time {
+        width: 150px;
+        line-height: 44px;
+        text-align: center;
+    }
+
+    .level-2 {
+        padding-left: 52px;
+    }
+
+    .border-right {
+        border-right: 1px solid #F7F7F7;
+    }
+
+    .agent-apply-status {
+        width: 120px;
+        margin-left: -10px;
+    }
+
+    .filter-color-normal .el-input__inner {
+        color: #444;
+    }
+
+    .filter-color-forbidden .el-input__inner {
+        color: #ED655F;
+    }
+
+    .filter-color-pending .el-input__inner {
+        color: #999;
+    }
+
+    .filter-color-freeze .el-input__inner {
+        color: #687FF4;
+    }
+
+    .agent-apply-status .el-input__inner {
+        border: none;
+        outline: none;
+    }
+
+    .agent-apply-item-nodata {
+        height: calc(100% - 174px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        line-height: 14px;
+        color: #6B6B6C;
+    }
+
+    .ellipsis-item-width {
+        max-width: 110px;
+    }
+
+    .el-popover-tip {
+        margin-left: 8px;
+        font-size: 18px;
+        color: #C4C4C4;
+    }
+
+
+    @media screen and (max-width: 1200px) {
+        .hidden-sm-and-down {
+            display: none;
+        }
+
+        .hidden-sm-and-up {
+            display: block;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .hidden-sm-and-down {
+            display: block;
+        }
+
+        .hidden-sm-and-up {
+            display: none;
+        }
+    }
+
+    .parent-agent-header {
+        height: 40px;
+        background: #F9F9F9;
+        border: 1px solid #E6E6E6;
+    }
+
+    .parent-agent-header>div {
+        text-align: center;
+        line-height: 40px;
+    }
+
+    .parent-agent-id {
+        width: 70px;
+        text-align: center;
+    }
+
+    .parent-agent-message {
+        width: 170px;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .parent-agent-message .table-image {
+        margin: 0 10px 0 0;
+    }
+
+    .parent-agent-body .parent-agent-id,
+    .parent-agent-body .parent-agent-message {
+        border-right: 1px solid #F7F7F7;
+    }
+
+    .parent-agent-phone {
+        width: 110px;
+        text-align: center;
+        position: relative;
+    }
+
+    .parent-agent-item {
+        height: 44px;
+        border-bottom: 1px solid #E6E6E6;
+        cursor: pointer;
+    }
+
+    .parent-agent-item:last-of-type {
+        border: none;
+    }
+
+    .parent-agent-body {
+        border: 1px solid #E6E6E6;
+        border-top: none;
+    }
+
+    .parent-agent-search {
+        margin-bottom: 14px;
+    }
+
+    .agent-refresh {
+        position: absolute;
+        top: -164px;
+        color: #86848B;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .agent-refresh span {
+        margin-left: 8px;
+    }
+
+    .el-dialog-tip {
+        color: #F8A92B;
+        font-size: 12px;
+        line-height: 20px;
+        margin-bottom: 14px;
+    }
+
+    .parent-agent-item-active {
+        background: rgba(116, 56, 213, 0.1);
+    }
+
+    .agent-apply-info-status {
+        padding-bottom: 32px;
+        margin-bottom: 28px;
+        border-bottom: 1px dashed #e6e6e6;
+        justify-content: space-between;
+    }
+
+    .apply-info-status-1 .el-input__inner {
+        color: #ED655F;
+    }
+
+    .apply-info-status-2 .el-input__inner {
+        color: #999;
+    }
+
+    .apply-info-status-3 .el-input__inner {
+        color: #545355;
+    }
+
+    .agent-apply-title-cancel {
+        color: #999;
+    }
+
+    .agent-assets {
+        border-bottom: 1px dashed #e6e6e6;
+    }
+
+    .agent-assets:last-of-type {
+        border-bottom: none;
+    }
+
+    .agent-dashboard-item-margin {
+        margin-bottom: 30px;
+    }
+
+    .agent-dashboard-item-tip i {
+        margin-left: 6px;
+        font-size: 12px;
+        color: #7C7C7C;
+    }
+
+    .el-breadcrumb {
+        font-size: 14px;
+        line-height: 50px;
+        height: 50px;
+    }
+
+    .theme-cursor {
+        color: #6E3DC8;
+        cursor: pointer;
+    }
+
+    .theme-cursor-edit {
+        margin-left: 14px;
+        font-size: 12px;
+    }
+
+    .table-height .el-table td .cell {
+        height: 60px;
+        display: flex;
+        align-items: center;
+    }
+
+    .reward-item {
+        margin-right: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .reward-item:last-of-type {
+        margin-right: 0;
+    }
+
+    .el-image-viewer__close {
+        color: #6E3DC8;
+    }
+
+
+
+    .el-button--text,
+    .el-button--text:hover,
+    .el-button--text:focus {
+        color: #999;
+    }
+
+    .log-selected {
+        width: 120px !important;
+        position: relative;
+    }
+
+    .log-selected .el-select,
+    .log-selected .el-input__inner {
+        font-size: 12px;
+        border: none;
+        background: #F9F9F9;
+    }
+
+    .log-selected .el-select .el-input .el-select__caret {
+        color: #444;
+    }
+
+    .log-selected-tip {
+        position: absolute;
+        z-index: 100;
+        width: 80px;
+        background: #F9F9F9;
+        left: 8px;
+        text-align: right;
+    }
+
+    .no-recommendation {
+        color: #FE7C76;
+        cursor: pointer;
+    }
+
+    .shopro-pagination-container {
+        padding: 20px 0 0 20px;
+    }
+
+    .el-pagination {
+        padding: 0;
+    }
+
+    .crumbs-item-container {
+        width: 600px;
+        display: block;
+    }
+
+    .agent-dashboard-popover-item {
+        margin-bottom: 10px;
+    }
+
+    .agent-dashboard-popover-item:last-of-type {
+        margin: 0;
+    }
+
+    .el-popover {
+        min-width: 92px;
+        color: #848089;
+    }
+
+    .agent-dashboard-popover-item-tip {
+        margin-right: 10px;
+    }
+
+    .unit-tip-item {
+        color: #626066;
+        font-size: 12px;
+        margin-left: 6px;
+        line-height: 18px;
+    }
+
+    .nice-validator .el-input__inner {
+        vertical-align: baseline !important;
+    }
+
+    [v-cloak] {
+        display: none
+    }
+</style>
+<script src="__CDN__/assets/addons/shopro/libs/vue.js"></script>
+<script src="__CDN__/assets/addons/shopro/libs/element/element.js"></script>
+<script src="__CDN__/assets/addons/shopro/libs/moment.js"></script>
+<div id="agentDetail" v-cloak>
+    <div class="" v-loading="agentAjax">
+        <el-row :gutter="10" v-if="profileData.user">
+            <el-col :xs="14" :sm="14" :md="14" :lg="8" :xl="8">
+                <div class="profile-block display-flex agent-message">
+                    <div class="agent-image" @click="operation('open-user',profileData.user_id)">
+                        <el-image :src="Fast.api.cdnurl(profileData.user.avatar)" fit="contain">
+                            <div slot="error" class="image-slot">
+                                <i class="el-icon-picture-outline"></i>
+                            </div>
+                        </el-image>
+                        <div class="agent-level-image" v-if="profileData.agent_level">
+                            <el-image :src="Fast.api.cdnurl(profileData.agent_level.image)" fit="contain">
+                                <div slot="error" class="image-slot">
+                                    <i class="el-icon-picture-outline"></i>
+                                </div>
+                            </el-image>
+                        </div>
+                    </div>
+                    <div class="agent-name font-weight">
+                        {{profileData.user.nickname}}
+                    </div>
+                    <div style="position: relative;">
+                        <div class="agent-refresh" @click="getprofile">
+                            <i class="el-icon-refresh-right"></i><span>刷新</span>
+                        </div>
+                        <div class="agent-list-item display-flex" style="margin-bottom: 14px;">
+                            <div class="agent-list-item-tip"><span class="tip-span">分销商状态</span><span>:</span></div>
+                            <div class="agent-list-item-container display-flex">
+                                <div class="agent-list-item-form font-weight">
+                                    <div class="agent-apply-status"
+                                        :class="operation('filter-color',profileData.status)">
+                                        <el-select v-model="profileData.status" placeholder="" size="mini"
+                                            @change="statusChange">
+                                            <el-option v-for="item in agentStatusOptions" :key="item.value"
+                                                :label="item.label" :value="item.value">
+                                            </el-option>
+                                        </el-select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="agent-list-item display-flex">
+                            <div class="agent-list-item-tip"><span class="tip-span">分销等级</span><span>:</span></div>
+                            <div class="agent-list-item-container display-flex">
+                                <div class="agent-list-item-form font-weight">
+                                    <span>{{(profileData.agent_level &&
+                                        profileData.agent_level.name)?profileData.agent_level.name:'-'}}</span>
+                                    <span>(等级{{profileData.level}})</span>
+                                </div>
+                                <div class="theme-cursor theme-cursor-edit" @click="openDialog('change-level')">更换
+                                </div>
+                            </div>
+                        </div>
+                        <div class="agent-list-item display-flex" v-if="profileData.level_status>0">
+                            <div class="agent-list-item-tip"><span class="tip-span">待升级等级</span><span>:</span></div>
+                            <div class="agent-list-item-container display-flex">
+                                <div class="agent-list-item-form font-weight">
+                                    <span>{{profileData.level_status_text?profileData.level_status_text:'-'}}</span>
+                                    <span>(等级{{profileData.level_status}})</span>
+                                </div>
+                                <div class="theme-cursor theme-cursor-edit" v-if="profileData.level_status_text"
+                                    @click="operation('level-status',profileData.level_status)">同意
+                                </div>
+                                <div class="theme-cursor theme-cursor-edit no-recommendation"
+                                    @click="operation('level-status',0)">拒绝
+                                </div>
+                            </div>
+                        </div>
+                        <div class="agent-list-item display-flex">
+                            <div class="agent-list-item-tip"><span class="tip-span">上级分销商</span><span>:</span></div>
+                            <div class="agent-list-item-container display-flex">
+                                <div class="agent-list-item-form">
+                                    <span class="ellipsis-item ellipsis-item-width font-weight theme-cursor"
+                                        v-if="profileData.parent_agent && profileData.parent_agent_id!=0"
+                                        @click="operation('view-parent-agent',profileData.parent_agent_id)">{{profileData.parent_agent.nickname}}</span>
+                                    <span v-else>无推荐人</span>
+                                </div>
+                                <div class="theme-cursor" @click="openDialog('change-parent-agent')">更换</div>
+                            </div>
+                        </div>
+                        <div class="agent-list-item-more display-flex">
+                            <div class="agent-list-item-tip"><span class="tip-span">佣金比例</span><span>:</span></div>
+                            <div class="agent-list-item-container display-flex">
+                                <div class="agent-commission_rules-item">
+                                    <div>一级(自购)</div>
+                                    <div class="agent-commission_rules-rate font-weight">
+                                        {{profileData.agent_level?profileData.agent_level.commission_rules.commission_1:'0.00'}}%
+                                    </div>
+                                </div>
+                                <div class="agent-commission_rules-item">
+                                    <div>二级</div>
+                                    <div class="agent-commission_rules-rate font-weight">
+                                        {{profileData.agent_level?profileData.agent_level.commission_rules.commission_2:'0.00'}}%
+                                    </div>
+                                </div>
+                                <div class="agent-commission_rules-item">
+                                    <div>三级</div>
+                                    <div class="agent-commission_rules-rate font-weight">
+                                        {{profileData.agent_level?profileData.agent_level.commission_rules.commission_3:'0.00'}}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="display-flex">
+                            <div class="agent-list-item-tip"><span class="tip-span">允许升级</span><span>:</span></div>
+                            <div class="display-flex">
+                                <el-switch :active-value="0" :inactive-value="1" v-model="profileData.upgrade_lock"
+                                    @change="lockChange" active-color="#7536D0" inactive-color="#eee">
+                                </el-switch>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </el-col>
+            <el-col class="hidden-sm-and-down" :lg="12" :xl="12">
+                <div class="profile-block agent-dashboard">
+                    <div class="agent-dashboard-contanmer">
+                        <div class="agent-dashboard-title font-weight">
+                            团队统计<span class="theme-cursor theme-cursor-edit"
+                                @click="operation('view-team',profileData.user_id)">查看团队</span>
+                        </div>
+                        <el-row :gutter="10">
+                            <el-col :span="8">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">团队人数：</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.user.child_user_count}}
+                                        <span class="unit-tip-item">人</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">一级团队人数:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.user.child_user_count_1}}
+                                        <span class="unit-tip-item">人</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">二级团队人数:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.user.child_user_count_2}}
+                                        <span class="unit-tip-item">人</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">团队分销商人数:
+                                        <el-popover placement="bottom-start" trigger="hover">
+                                            <div>
+                                                <div class="agent-dashboard-popover-item"
+                                                    v-for="(agentLevel,alindex) in profileData.child_agent_level">
+                                                    <span
+                                                        class="agent-dashboard-popover-item-tip">等级{{alindex}}:</span><span>{{agentLevel}}人</span>
+                                                </div>
+                                            </div>
+                                            <i slot="reference" class="el-icon-warning"></i>
+                                        </el-popover>
+                                    </div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_agent_count}}
+                                        <span class="unit-tip-item">人</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">一级分销商人数:
+                                        <el-popover placement="bottom-start" trigger="hover">
+                                            <div>
+                                                <div class="agent-dashboard-popover-item"
+                                                    v-for="(agentLevel,alindex) in profileData.child_agent_level_1">
+                                                    <span
+                                                        class="agent-dashboard-popover-item-tip">等级{{alindex}}:</span><span>{{agentLevel}}人</span>
+                                                </div>
+                                            </div>
+                                            <i slot="reference" class="el-icon-warning"></i>
+                                        </el-popover>
+                                    </div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_agent_count_1}}
+                                        <span class="unit-tip-item">人</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">二级分销商人数:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_agent_count_2}}
+                                        <span class="unit-tip-item">人</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                    <div class="agent-assets">
+                        <div class="agent-assets-title font-weight">
+                            业绩统计
+                        </div>
+                        <el-row :gutter="10">
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">团队分销总金额：</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_order_money}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">一级分销总金额:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_order_money_1}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">二级分销总金额:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_order_money_2}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">直推分销总金额:
+                                        <el-popover placement="bottom" width="210" trigger="hover"
+                                            content="包含直推分销金额和内购分销金额">
+                                            <i slot="reference" class="el-icon-warning"></i>
+                                        </el-popover>
+                                    </div>
+                                    <div class="agent-dashboard-item-form theme-cursor"
+                                        @click="operation('open-order')">
+                                        {{profileData.order_money}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">团队分销订单：</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_order_count}}
+                                        <span class="unit-tip-item">单</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">一级分销订单:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_order_count_1}}
+                                        <span class="unit-tip-item">单</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">二级分销订单:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_order_count_2}}
+                                        <span class="unit-tip-item">单</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">直推分销订单:
+                                        <el-popover placement="bottom" width="210" trigger="hover"
+                                            content="包含直推分销订单和自购分销订单">
+                                            <i slot="reference" class="el-icon-warning"></i>
+                                        </el-popover>
+                                    </div>
+                                    <div class="agent-dashboard-item-form theme-cursor"
+                                        @click="operation('open-order')">
+                                        {{profileData.order_count}}
+                                        <span class="unit-tip-item">单</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                    <div class="agent-assets">
+                        <div class="agent-assets-title font-weight">
+                            资产信息
+                        </div>
+                        <el-row :gutter="10">
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">累计佣金:</div>
+                                    <div class="agent-dashboard-item-form theme-cursor"
+                                        @click="operation('open-reward','')">
+                                        {{profileData.total_income}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">待入账佣金:</div>
+                                    <div class="agent-dashboard-item-form theme-cursor"
+                                        @click="operation('open-reward','0')">
+                                        {{profileData.delay_money}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">消费金额:</div>
+                                    <div class="agent-dashboard-item-form">
+                                        {{profileData.user?profileData.user.total_consume:'-'}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :xs="10" :sm="10" :md="10" :lg="4" :xl="4">
+                <div class="profile-block agent-apply shopro-container-scrollbar">
+                    <div class="agent-apply-title font-weight">
+                        <div>完善资料</div>
+                    </div>
+                    <div class="agent-apply-info-status display-flex">
+                        <div>资料状态：</div>
+                        <div class="agent-apply-status"
+                            :class="profileData.info_status==-1?'apply-info-status-1':(profileData.info_status==0?'apply-info-status-2':'apply-info-status-3')"
+                            style="width: 90px;">
+                            <el-select v-model="profileData.info_status" placeholder="" size="mini"
+                                @change="applyInfoStatusChange">
+                                <el-option v-for="item in agentInfoOptions" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </div>
+                    </div>
+                    <div class="agent-apply-title font-weight">
+                        <div>申请信息</div>
+                        <div class="theme-cursor theme-cursor-edit" v-if="!isEditInfoStatus"
+                            @click="operation('edit-info-status','apply_info')">编辑</div>
+                        <div class="theme-cursor theme-cursor-edit" v-if="isEditInfoStatus">
+                            <span style="color: #999;" @click="isEditInfoStatus=false">取消</span>
+                            <span class="theme-cursor theme-cursor-edit" style="margin-left: 10px;"
+                                @click="operation('save','apply_info')">保存</span>
+                        </div>
+                    </div>
+                    <template v-if="applyInfoList!=0">
+                        <div v-if="typeof(profileData.apply_info)!='string' && (profileData.apply_info || applyInfoList!=0)"
+                            class="agent-apply-item" v-for="(infoitem,infoindex) in profileData.apply_info">
+                            <div class="agent-apply-item-tip">
+                                <span>{{infoitem.name}}:</span>
+                                <span class="agent-apply-item-tip-delete" v-if="!infoitem.isdelete && isEditInfoStatus"
+                                    @click="operation('delete-apply-info',infoindex)">删除</span>
+                            </div>
+                            <div class="agent-apply-item-form display-flex"
+                                v-if="infoitem.type=='input' || infoitem.type=='number'">
+                                <div class="font-weight">
+                                    <el-input v-if="isEditInfoStatus" v-model="infoitem.value" placeholder="请输入内容"
+                                        size="small"></el-input>
+                                    <span v-if="!isEditInfoStatus">{{infoitem.value}}</span>
+                                </div>
+                            </div>
+                            <div class="agent-apply-item-form display-flex" v-if="infoitem.type=='image'">
+                                <div class="agent-apply-item-identity" @click="operation('select-image',infoindex)"
+                                    v-if="isEditInfoStatus">
+                                    <el-image :src="Fast.api.cdnurl(infoitem.value)" fit="contain">
+                                        <div slot="error" class="image-slot">
+                                            <i class="el-icon-picture-outline"></i>
+                                        </div>
+                                    </el-image>
+                                </div>
+                                <div class="agent-apply-item-identity" v-if="!isEditInfoStatus">
+                                    <el-image :src="Fast.api.cdnurl(infoitem.value)"
+                                        :preview-src-list="infoitem.value_arr" fit="contain">
+                                        <div slot="error" class="image-slot">
+                                            <i class="el-icon-picture-outline"></i>
+                                        </div>
+                                    </el-image>
+                                </div>
+                                <!-- <div class="theme-cursor theme-cursor-edit">
+                                修改
+                            </div> -->
+                            </div>
+                        </div>
+                        <div class="agent-apply-item-nodata font-weight"
+                            v-if="!profileData.apply_info && applyInfoList==0">暂无申请资料</div>
+                    </template>
+                    <div class="agent-apply-item-nodata font-weight" v-if="applyInfoList==0">无需资料审核</div>
+                </div>
+            </el-col>
+            <el-col class="hidden-sm-and-up" :xs="24" :sm="24" :md="24">
+                <div class="profile-block agent-dashboard">
+                    <div class="agent-dashboard-contanmer">
+                        <div class="agent-dashboard-title font-weight">
+                            团队统计<span class="theme-cursor theme-cursor-edit"
+                                @click="operation('view-team',profileData.user_id)">查看团队</span>
+                        </div>
+                        <el-row :gutter="10">
+                            <el-col :span="8">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">团队人数：</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.user.child_user_count}}
+                                        <span class="unit-tip-item">人</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">一级团队人数:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.user.child_user_count_1}}
+                                        <span class="unit-tip-item">人</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">二级团队人数:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.user.child_user_count_2}}
+                                        <span class="unit-tip-item">人</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">团队分销商人数:
+                                        <el-popover placement="bottom-start" trigger="hover">
+                                            <div>
+                                                <div class="agent-dashboard-popover-item"
+                                                    v-for="(agentLevel,alindex) in profileData.child_agent_level">
+                                                    <span
+                                                        class="agent-dashboard-popover-item-tip">等级{{alindex}}:</span><span>{{agentLevel}}人</span>
+                                                </div>
+                                            </div>
+                                            <i slot="reference" class="el-icon-warning"></i>
+                                        </el-popover>
+                                    </div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_agent_count}}
+                                        <span class="unit-tip-item">人</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">一级分销商人数:
+                                        <el-popover placement="bottom-start" trigger="hover">
+                                            <div>
+                                                <div class="agent-dashboard-popover-item"
+                                                    v-for="(agentLevel,alindex) in profileData.child_agent_level_1">
+                                                    <span
+                                                        class="agent-dashboard-popover-item-tip">等级{{alindex}}:</span><span>{{agentLevel}}人</span>
+                                                </div>
+                                            </div>
+                                            <i slot="reference" class="el-icon-warning"></i>
+                                        </el-popover>
+                                    </div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_agent_count_1}}
+                                        <span class="unit-tip-item">人</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">二级分销商人数:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_agent_count_2}}
+                                        <span class="unit-tip-item">人</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                    <div class="agent-assets">
+                        <div class="agent-assets-title font-weight">
+                            业绩统计
+                        </div>
+                        <el-row :gutter="10">
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">团队分销总金额：</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_order_money}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">一级分销总金额:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_order_money_1}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">二级分销总金额:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_order_money_2}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item agent-dashboard-item-margin">
+                                    <div class="agent-dashboard-item-tip">直推分销总金额:
+                                        <el-popover placement="bottom" width="210" trigger="hover"
+                                            content="包含直推分销金额和内购分销金额">
+                                            <i slot="reference" class="el-icon-warning"></i>
+                                        </el-popover>
+                                    </div>
+                                    <div class="agent-dashboard-item-form theme-cursor"
+                                        @click="operation('open-order')">
+                                        {{profileData.order_money}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">团队分销订单：</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_order_count}}
+                                        <span class="unit-tip-item">单</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">一级分销订单:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_order_count_1}}
+                                        <span class="unit-tip-item">单</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">二级分销订单:</div>
+                                    <div class="agent-dashboard-item-form">{{profileData.child_order_count_2}}
+                                        <span class="unit-tip-item">单</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">直推分销订单:
+                                        <el-popover placement="bottom" width="210" trigger="hover"
+                                            content="包含直推分销订单和自购分销订单">
+                                            <i slot="reference" class="el-icon-warning"></i>
+                                        </el-popover>
+                                    </div>
+                                    <div class="agent-dashboard-item-form theme-cursor"
+                                        @click="operation('open-order')">
+                                        {{profileData.order_count}}
+                                        <span class="unit-tip-item">单</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                    <div class="agent-assets">
+                        <div class="agent-assets-title font-weight">
+                            资产信息
+                        </div>
+                        <el-row :gutter="10">
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">累计佣金:</div>
+                                    <div class="agent-dashboard-item-form theme-cursor"
+                                        @click="operation('open-reward','')">
+                                        {{profileData.total_income}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">待入账佣金:</div>
+                                    <div class="agent-dashboard-item-form theme-cursor"
+                                        @click="operation('open-reward','0')">
+                                        {{profileData.delay_money}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="6">
+                                <div class="agent-dashboard-item">
+                                    <div class="agent-dashboard-item-tip">消费金额:</div>
+                                    <div class="agent-dashboard-item-form">
+                                        {{profileData.user?profileData.user.total_consume:'-'}}
+                                        <span class="unit-tip-item">元</span>
+                                    </div>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                </div>
+            </el-col>
+        </el-row>
+    </div>
+    <div class="profile-block agent-table">
+        <div class="shopro-index-button-container">
+            <div class="custom-refresh display-flex-c" @click="getListData(activeStatus)">
+                <i class="el-icon-refresh"></i>
+            </div>
+            <div class="flex-1">
+                <el-radio-group v-model="activeStatus" fill="#7536D0" @change="radioChange">
+                    <el-radio-button label="log">分销动态</el-radio-button>
+                    <el-radio-button label="order">分销订单</el-radio-button>
+                    <el-radio-button label="reward">佣金明细</el-radio-button>
+                </el-radio-group>
+            </div>
+            <div class="theme-cursor" @click="operation('list-detail')">
+                查看详情
+            </div>
+        </div>
+        <div v-loading="logListAjax">
+            <div class="shopro-table-container" :class="activeStatus=='order'?'table-height':''">
+                <el-table ref="multipleTable" :data="logList" border>
+                    <template v-for="(item, index) in columns[activeStatus]">
+                        <el-table-column :key="index" :fixed="item.fixed" :prop="item.field"
+                            :align="item.align ? item.align : 'center'" :min-width="item.width">
+                            <template slot="header" slot-scope="scope">
+                                <div class="log-selected" v-if="item.header=='custom-header'">
+                                    <div class="log-selected-tip">动态筛选</div>
+                                    <el-select v-model="filterForm.event" placeholder="请选择" size="small"
+                                        @change="changeLogEvent">
+                                        <el-option v-for="item in logOptions" :key="item.type" :label="item.name"
+                                            :value="item.type">
+                                        </el-option>
+                                    </el-select>
+                                </div>
+                                <div v-if="!item.header">
+                                    {{item.title}}
+                                </div>
+                            </template>
+                            <template slot-scope="scope">
+                                <div class="display-flex" v-if="item.type=='vhtml'" v-html="item.formatter(scope.row)">
+                                </div>
+                                <div class="display-flex" v-if="item.type=='click'" v-html="item.formatter(scope.row)"
+                                    @click="operation('open-order',scope.row.order.id)"></div>
+                                <div class="display-flex" v-if="item.type=='open'" v-html="item.formatter(scope.row)"
+                                    @click="operation(scope.row.event,scope.row.event_id)"></div>
+                                <div v-if="item.type=='vmodel'">{{scope.row[item.field]}}</div>
+                            </template>
+                        </el-table-column>
+                    </template>
+                </el-table>
+            </div>
+            <div class="shopro-pagination-container">
+                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                    :current-page="currentPage" :page-sizes="[10, 20, 30, 40]" :page-size="limit"
+                    layout="total, sizes, prev, pager, next, jumper" :total="totalPage">
+                </el-pagination>
+            </div>
+        </div>
+
+    </div>
+    <div class="ChildUserCountContainer">
+        <el-dialog :title="dialogType=='change-parent-agent'?'修改上级分销商':'修改分销商等级'" :visible.sync="dialogVisible"
+            :before-close="closeDialog">
+            <div v-if="dialogType=='change-level'">
+                <div class="el-dialog-tip">
+                    注意：更换等级后，该用户不会降级。
+                </div>
+                <div>
+                    <div class="parent-agent-header display-flex">
+                        <div class="parent-agent-id">ID</div>
+                        <div class="parent-agent-message" style="text-align: left;padding-left: 10px;">等级信息</div>
+                        <div class="parent-agent-phone" style="text-align: left;padding-left: 10px;">等级权重</div>
+                    </div>
+                    <div class="parent-agent-body">
+                        <div class="parent-agent-item display-flex"
+                            :class="agent.level==selectAgentLevel?'parent-agent-item-active':''"
+                            v-for="(agent,aindex) in agentLevelList"
+                            @click="operation('select-agent-level',agent.level)">
+                            <div class="parent-agent-id">{{agent.level}}</div>
+                            <div class="parent-agent-message">
+                                <div class="display-flex">
+                                    <div class="table-image">
+                                        <el-image :src="Fast.api.cdnurl(agent.image)" fit="contain">
+                                            <div slot="error" class="image-slot">
+                                                <i class="el-icon-picture-outline"></i>
+                                            </div>
+                                        </el-image>
+                                    </div>
+                                    <div class="ellipsis-item">{{agent.name}}</div>
+                                </div>
+                                <div v-else>-</div>
+                            </div>
+                            <div class="parent-agent-phone" style="text-align: left;padding-left: 10px;">
+                                等级{{agent.level}}
+                                <span v-if="agent.level==profileData.agent_level.level"
+                                    style="position: absolute;right: 10px;color: #6E3DC8;">
+                                    (当前)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="dialogType=='change-parent-agent'">
+                <div class="el-dialog-tip">
+                    注意：更换上级分销商之后，该用户之后的所有团队和业绩将移至新的分销商名下。
+                </div>
+                <div class="parent-agent-search">
+                    <el-input placeholder="请输入内容" v-model="parentFilterForm.form_1_value" class="input-with-select"
+                        size="small" @input="parentDebounceFilter">
+                        <el-select v-model="parentFilterForm.form_1_key" slot="prepend" placeholder="请选择">
+                            <el-option label="会员ID" value="user_id"></el-option>
+                            <el-option label="会员昵称" value="nickname"></el-option>
+                            <el-option label="手机号" value="mobile"></el-option>
+                        </el-select>
+                        <i slot="suffix" class="el-input__icon el-icon-search"></i>
+                    </el-input>
+                </div>
+                <div>
+                    <div class="parent-agent-header display-flex">
+                        <div class="parent-agent-id">ID</div>
+                        <div class="parent-agent-message">分销信息</div>
+                        <div class="parent-agent-message">分销等级</div>
+                        <div class="parent-agent-phone">手机号</div>
+                    </div>
+                    <div class="parent-agent-body">
+                        <div class="parent-agent-item display-flex"
+                            :class="parent.user_id==selectParentAgentId?'parent-agent-item-active':''"
+                            v-for="parent in dialogList" v-if="dialogList.length>0"
+                            @click="operation('select-parent-agent',parent.user_id)">
+                            <div class="parent-agent-id">{{parent.user_id}}</div>
+                            <div class="parent-agent-message">
+                                <div v-if="parent.user" class="display-flex">
+                                    <div class="table-image" v-if="parent.user.avatar">
+                                        <el-image :src="Fast.api.cdnurl(parent.user.avatar)" fit="contain">
+                                            <div slot="error" class="image-slot">
+                                                <i class="el-icon-picture-outline"></i>
+                                            </div>
+                                        </el-image>
+                                    </div>
+                                    <div class="ellipsis-item">{{parent.user.nickname?parent.user.nickname:'-'}}</div>
+                                </div>
+                                <div v-else style="text-align: left;">-</div>
+                            </div>
+                            <div class="parent-agent-message">
+                                <span
+                                    v-if="parent.agent_level && parent.agent_level.name">{{parent.agent_level.name}}</span>(等级{{parent.level}})
+                            </div>
+                            <div class="parent-agent-phone">
+                                <span v-if="parent.user">{{parent.user.mobile?parent.user.mobile:'-'}}</span>
+                                <span v-else>-</span>
+                            </div>
+                        </div>
+                        <div class="parent-agent-item display-flex" style="justify-content: center;"
+                            v-if="dialogList.length==0">无数据</div>
+                    </div>
+                </div>
+                <div class="shopro-pagination-container">
+                    <el-pagination pager-count="5" @current-change="phandleCurrentChange" :current-page="pcurrentPage"
+                        :page-size="plimit" layout="total, prev, pager, next, jumper" :total="ptotalPage">
+                    </el-pagination>
+                </div>
+            </div>
+            <span v-if="dialogType!='view-team'" slot="footer"
+                style="display: flex;align-items: center;justify-content: space-between;">
+                <div>
+                    <el-checkbox v-if="dialogType=='change-parent-agent'" v-model="noRecommendationChecked"
+                        @change="operation('select-parent-agent',noRecommendationChecked)">设为无推荐人</el-checkbox>
+                </div>
+                <div>
+                    <el-button style="margin-right: 10px;" @click="closeDialog" size="mini" type="text">取 消</el-button>
+                    <el-button type="primary" size="small" @click="closeDialog(true,dialogType)">确 定</el-button>
+                </div>
+            </span>
+        </el-dialog>
+    </div>
+</div>

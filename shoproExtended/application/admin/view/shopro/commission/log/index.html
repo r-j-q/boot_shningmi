@@ -1,0 +1,344 @@
+<link rel="stylesheet" href="__CDN__/assets/addons/shopro/libs/element/element.css">
+<link rel="stylesheet" href="__CDN__/assets/addons/shopro/libs/common.css">
+<style>
+    #indexPage {
+        font-family: Source Han Sans SC;
+        /* padding: 0 0 20px; */
+        /* background: #fff; */
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    .shopro-screen-container {
+        padding-top: 16px;
+        background: #fff;
+    }
+
+    .shopro-table-container {
+        background: #fff;
+        margin-top: 10px;
+        padding: 20px 20px 30px;
+    }
+
+    .shopro-reset-button {
+        margin-right: 20px;
+    }
+
+    .title {
+        height: 58px;
+        line-height: 58px;
+        font-weight: 600;
+        font-size: 13px;
+    }
+
+    .btn-common {
+        width: 80px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 4px;
+        font-size: 13px;
+        text-align: center;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .btn-box {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .create-btn {
+        background: #7536D0;
+        color: #fff;
+        width: 100px;
+        height: 32px;
+        line-height: 32px;
+    }
+
+    .operation-status {
+        color: #7438D5;
+        margin-right: 14px;
+        cursor: pointer;
+    }
+
+    .table-header-bgcolor th {
+        background-color: #f9f9f9 !important;
+        padding: 8px 0;
+    }
+
+    .table-header-bgcolor th .cell {
+        font-weight: 400;
+        color: #444;
+    }
+
+    /* 搜索 筛选 */
+    .screen-con {
+        display: flex;
+    }
+
+    .header-input-item {
+        margin-right: 30px;
+        margin-bottom: 14px;
+        width: 242px;
+    }
+
+    .header-input-item .header-input-tip {
+        margin-right: 14px;
+    }
+
+    .header-input-item .el-input {
+        width: 176px;
+    }
+
+    .multiple-set-acitve-1,
+    .multiple-set-acitve-2,
+    .multiple-set-acitve-3 {
+        cursor: pointer;
+        margin-right: 14px;
+    }
+
+    .multiple-set-acitve .multiple-set-acitve-1 {
+        color: #60CC9E;
+    }
+
+    .multiple-set-acitve .multiple-set-acitve-2 {
+        color: #ED655F;
+    }
+
+    .multiple-set-acitve .multiple-set-acitve-3 {
+        color: #7438D5
+    }
+
+    .shopro-pagination-container .shopro-edit-text {
+        color: inherit;
+    }
+
+    .shopro-refresh-button {
+        margin-bottom: 20px;
+        margin-right: 20px;
+    }
+
+    .el-checkbox__inner:focus {
+        border: none;
+        outline: none;
+    }
+
+    .el-table--border th:first-child .cell {
+        padding-left: 5px;
+    }
+
+    .activity-type {
+        justify-content: space-around;
+        width: 90px;
+    }
+
+    .activity-type-btn {
+        width: 40px;
+        height: 20px;
+        padding-top: 2px;
+        border-radius: 4px;
+        color: #fff;
+        justify-content: center;
+    }
+
+    .seckill-btn {
+        background: #FFF4F3;
+        border: 1px solid #FECAC4;
+        color: #FE9488;
+    }
+
+    .groupon-btn {
+        background: #F1EDFA;
+        border: 1px solid #CEBEEC;
+        color: #9C7EDA;
+    }
+
+    .score-btn {
+        background: #FDF5E8;
+        border: 1px solid #F8DCAE;
+        color: #F2BA5E;
+    }
+
+    .really-status-tip {
+        margin-right: 10px;
+        color: #444;
+        font-size: 12px;
+    }
+
+    .really-status-icon {
+        font-size: 20px;
+        color: #7C7C7C;
+        margin-right: 16px;
+    }
+
+    .el-popover--plain {
+        padding: 12px;
+        color: #444;
+    }
+
+    .nice-validator .el-input__inner {
+        vertical-align: baseline !important;
+    }
+
+    .active-cursor-line {
+        color: #7438D5;
+        cursor: pointer;
+    }
+
+    [v-cloak] {
+        display: none
+    }
+</style>
+<script src="__CDN__/assets/addons/shopro/libs/vue.js"></script>
+<script src="__CDN__/assets/addons/shopro/libs/element/element.js"></script>
+<script src="__CDN__/assets/addons/shopro/libs/moment.js"></script>
+<div id="indexPage" v-cloak v-loading="isAjax">
+    <div class="shopro-screen-container">
+        <div class="shopro-button shopro-refresh-button" @click="getListData">
+            <i class="el-icon-refresh"></i>
+        </div>
+        <div class="display-flex shopro-screen-item">
+            <div class="really-status-tip">实时动态</div>
+            <el-popover placement="top" trigger="hover" content="开启后，该页面将实时刷新">
+                <i class="el-icon-question really-status-icon" slot="reference"></i>
+            </el-popover>
+            <el-switch @change="changeReallyStatus" v-model="really_status" active-value="1" inactive-value="0"
+                active-color="#7536D0" inactive-color="#eee">
+            </el-switch>
+        </div>
+        <div class="display-flex shopro-screen-item">
+            <el-input placeholder="请输入内容" v-model="searchForm.form_1_value" class="screen-item-select" size="small">
+                <el-select v-model="searchForm.form_1_key" slot="prepend" placeholder="请选择">
+                    <el-option label="分销用户ID" value="agent_id"></el-option>
+                    <el-option label="分销用户昵称" value="agent_nickname"></el-option>
+                    <el-option label="分销用户手机号" value="agent_mobile"></el-option>
+                </el-select>
+            </el-input>
+        </div>
+        <div class="display-flex shopro-screen-item">
+            <div class="shopro-screen-tip">操作人类型</div>
+            <div class="shopro-screen-condition">
+                <el-select v-model="searchForm.oper_type" placeholder="请选择动态类型" size="small">
+                    <el-option :label="type.label" :value="type.value" v-for="type in operTypeOptions">
+                    </el-option>
+                </el-select>
+            </div>
+        </div>
+        <div class="display-flex shopro-screen-item"
+            v-if="searchForm.oper_type=='user' || searchForm.oper_type=='admin'">
+            <el-input placeholder="请输入内容" v-model="searchForm.form_2_value" class="screen-item-select" size="small">
+                <el-select v-model="searchForm.form_2_key" slot="prepend" placeholder="请选择">
+                    <el-option label="操作人ID" value="oper_id"></el-option>
+                    <el-option label="操作人昵称" value="oper_nickname"></el-option>
+                    <el-option label="操作人手机号" value="oper_mobile" v-if="searchForm.oper_type=='user'"></el-option>
+                </el-select>
+            </el-input>
+        </div>
+        <div class="display-flex shopro-screen-item">
+            <div class="shopro-screen-tip">动态时间</div>
+            <div>
+                <el-date-picker v-model="searchForm.createtime" type="datetimerange" value-format="yyyy-MM-dd HH:mm:ss"
+                    size="small" format="yyyy-MM-dd HH:mm:ss" range-separator="至" start-placeholder="开始日期"
+                    end-placeholder="结束日期">
+                </el-date-picker>
+            </div>
+        </div>
+        <div class="display-flex shopro-screen-item">
+            <div class="shopro-screen-tip">动态类型</div>
+            <div class="shopro-screen-condition">
+                <el-select v-model="searchForm.event" placeholder="请选择动态类型" size="small">
+                    <el-option :label="log.name" :value="log.type" v-for="log in logOptions">
+                    </el-option>
+                </el-select>
+            </div>
+        </div>
+        <div class="display-flex shopro-screen-item-button">
+            <div class="shopro-button shopro-reset-button" @click="screenEmpty">重置</div>
+            <div class="shopro-button shopro-screen-button" @click="pageCurrentChange(1)">筛选</div>
+        </div>
+    </div>
+    <div class="shopro-table-container">
+        <el-table :data="listData" style="width: 100%" border stripe="true" :cell-class-name="tableCellClassName"
+            :header-cell-class-name="tableCellClassName">
+            </el-table-column>
+            <el-table-column prop="id" label="ID" width="70">
+            </el-table-column>
+            <el-table-column prop="event_text" label="动态筛选" min-width="100">
+            </el-table-column>
+            <el-table-column label="分销商" width="160">
+                <template slot-scope="scope">
+                    <el-popover placement="bottom" trigger="hover" width="180">
+                        <div class="popover-container">
+                            <div class="display-flex">
+                                <div class="display-flex">
+                                    <div class="popover-tip">用户ID</div>：
+                                </div>
+                                <div class="active-cursor-line" @click="openAgentProfile(scope.row.agent_id)">
+                                    {{scope.row.agent.id}}
+                                </div>
+                            </div>
+                            <div class="display-flex" v-if="scope.row.agent && scope.row.agent.mobile">
+                                <div class="display-flex">
+                                    <div class="popover-tip">手机号</div>：
+                                </div>
+                                <div>{{scope.row.agent.mobile}}</div>
+                            </div>
+                        </div>
+                        <div class="display-flex" slot="reference" v-if="scope.row.agent">
+                            <div class="table-image">
+                                <el-image :src="Fast.api.cdnurl(scope.row.agent.avatar)" fit="contain">
+                                    <div slot="error" class="image-slot">
+                                        <i class="el-icon-picture-outline"></i>
+                                    </div>
+                                </el-image>
+                            </div>
+                            <div class="ellipsis-item">{{scope.row.agent.nickname}}</div>
+                        </div>
+                    </el-popover>
+                    <div v-if="!scope.row.agent">-</div>
+                </template>
+            </el-table-column>
+            <el-table-column prop="remark" label="内容" width="400">
+            </el-table-column>
+            <el-table-column prop="oper_type_text" label="操作人类型" width="100">
+            </el-table-column>
+            <el-table-column label="操作人" width="160">
+                <template slot-scope="scope">
+                    <div class="display-flex" v-if="scope.row.oper">
+                        <div class="table-image">
+                            <el-image :src="Fast.api.cdnurl(scope.row.oper.avatar)" fit="contain">
+                                <div slot="error" class="image-slot">
+                                    <i class="el-icon-picture-outline"></i>
+                                </div>
+                            </el-image>
+                        </div>
+                        <div class="ellipsis-item">{{scope.row.oper.nickname}}</div>
+                    </div>
+                    <div v-if="!scope.row.oper">系统</div>
+                </template>
+            </el-table-column>
+            <el-table-column label="动态时间" width="160">
+                <template slot-scope="scope">
+                    <div>
+                        {{moment(scope.row.createtime*1000).format("YYYY-MM-DD HH:mm:ss")}}
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column label="操作" fixed="right" min-width="80">
+                <template slot-scope="scope">
+                    <div class="operation-status">
+                        <span v-if="['order','reward','share','agent','level'].includes(scope.row.event)"
+                            @click="operation(scope.row.event,scope.row)">详情</span>
+                        <span v-else>-</span>
+                    </div>
+                </template>
+            </el-table-column>
+        </el-table>
+        <div class="shopro-pagination-container">
+            <el-pagination @size-change="pageSizeChange" @current-change="pageCurrentChange" :current-page="currentPage"
+                :page-sizes="[10, 20, 30, 40]" :page-size="limit" layout="total, sizes, prev, pager, next, jumper"
+                :total="totalPage">
+            </el-pagination>
+        </div>
+    </div>
+</div>

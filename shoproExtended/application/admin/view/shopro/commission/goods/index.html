@@ -1,0 +1,301 @@
+<link rel="stylesheet" href="__CDN__/assets/addons/shopro/libs/element/element.css">
+<link rel="stylesheet" href="__CDN__/assets/addons/shopro/libs/common.css">
+<style>
+    #indexPage {
+        font-family: Source Han Sans SC;
+        padding: 0 20px 20px;
+        background: #fff;
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    .shopro-screen-container {
+        padding-top: 20px;
+    }
+
+    .shopro-reset-button {
+        margin-right: 20px;
+    }
+
+    .title {
+        height: 58px;
+        line-height: 58px;
+        font-weight: 600;
+        font-size: 13px;
+    }
+
+    .btn-common {
+        width: 80px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 4px;
+        font-size: 13px;
+        text-align: center;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .btn-box {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .create-btn {
+        background: #7536D0;
+        color: #fff;
+        width: 100px;
+        height: 32px;
+        line-height: 32px;
+    }
+
+    .operation-status {
+        color: #7438D5;
+        margin-right: 14px;
+        cursor: pointer;
+    }
+
+    .table-header-bgcolor th {
+        background-color: #f9f9f9 !important;
+        padding: 8px 0;
+    }
+
+    .table-header-bgcolor th .cell {
+        font-weight: 400;
+        color: #444;
+    }
+
+    /* 搜索 筛选 */
+    .screen-con {
+        display: flex;
+    }
+
+    .header-input-item {
+        margin-right: 30px;
+        margin-bottom: 14px;
+        width: 242px;
+    }
+
+    .header-input-item .header-input-tip {
+        margin-right: 14px;
+    }
+
+    .header-input-item .el-input {
+        width: 176px;
+    }
+
+    .shopro-pagination-container {
+        justify-content: space-between;
+    }
+
+    .multiple-set-acitve-1,
+    .multiple-set-acitve-2,
+    .multiple-set-acitve-3 {
+        cursor: pointer;
+        margin-right: 14px;
+    }
+
+    .multiple-set-acitve .multiple-set-acitve-1 {
+        color: #60CC9E;
+    }
+
+    .multiple-set-acitve .multiple-set-acitve-2 {
+        color: #ED655F;
+    }
+
+    .multiple-set-acitve .multiple-set-acitve-3 {
+        color: #7438D5
+    }
+
+    .shopro-pagination-container .shopro-edit-text {
+        color: inherit;
+    }
+
+    .shopro-refresh-button {
+        margin-bottom: 20px;
+        margin-right: 20px;
+    }
+
+    .el-checkbox__inner:focus {
+        border: none;
+        outline: none;
+    }
+
+    .el-table--border th:first-child .cell {
+        padding-left: 5px;
+    }
+
+    .multiple-set-item {
+        color: #ccc;
+    }
+
+    .shopro-table-container .table-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .el-table td,
+    .el-table th {
+        padding: 10px 0 9px;
+    }
+
+    [v-cloak] {
+        display: none
+    }
+</style>
+<script src="__CDN__/assets/addons/shopro/libs/vue.js"></script>
+<script src="__CDN__/assets/addons/shopro/libs/element/element.js"></script>
+<script src="__CDN__/assets/addons/shopro/libs/moment.js"></script>
+<div id="indexPage" v-cloak v-loading="isAjax">
+    <div class="shopro-screen-container">
+        <div class="shopro-button shopro-refresh-button" @click="getListData">
+            <i class="el-icon-refresh"></i>
+        </div>
+        <div class="display-flex shopro-screen-item">
+            <div class="shopro-screen-tip">商品名称</div>
+            <div class="shopro-screen-condition">
+                <el-input placeholder="请输入商品名称" size="small" v-model="searchForm.goods_title"></el-input>
+            </div>
+        </div>
+        <div class="display-flex shopro-screen-item">
+            <div class="shopro-screen-tip">商品分类</div>
+            <div class="shopro-screen-condition">
+                <el-select v-model="searchForm.goods_type" placeholder="请选择商品分类" size="small">
+                    <el-option :label="goods.name" :value="goods.type" v-for="goods in goodTypeOptions">
+                    </el-option>
+                </el-select>
+            </div>
+        </div>
+        <div class="display-flex shopro-screen-item">
+            <div class="shopro-screen-tip">活动类型</div>
+            <div class="shopro-screen-condition">
+                <el-select v-model="searchForm.activity_type" placeholder="请选择活动类型" size="small">
+                    <el-option :label="activity.name" :value="activity.type" v-for="activity in activityTypeOptions">
+                    </el-option>
+                </el-select>
+            </div>
+        </div>
+        <div class="display-flex shopro-screen-item">
+            <div class="shopro-screen-tip">分销规则</div>
+            <div class="shopro-screen-condition">
+                <el-select v-model="searchForm.self_rules" placeholder="请选择分销规则" size="small">
+                    <el-option :label="rules.name" :value="rules.type" v-for="rules in commissionTypeOptions">
+                    </el-option>
+                </el-select>
+            </div>
+        </div>
+        <div class="display-flex shopro-screen-item">
+            <div class="shopro-screen-tip">分销状态</div>
+            <div class="shopro-screen-condition">
+                <el-select v-model="searchForm.commission_goods_status" placeholder="请选择分销状态" size="small">
+                    <el-option :label="status.name" :value="status.type" v-for="status in commissionStatusOptions">
+                    </el-option>
+                </el-select>
+            </div>
+        </div>
+        <div class="display-flex shopro-screen-item-button">
+            <div class="shopro-button shopro-reset-button" @click="screenEmpty">重置</div>
+            <div class="shopro-button shopro-screen-button" @click="pageCurrentChange(1)">筛选</div>
+        </div>
+    </div>
+    <div class="shopro-table-container" v-loading="tableAjax">
+        <el-table ref="multipleTable" :data="listData" style="width: 100%" border stripe="true"
+            :cell-class-name="tableCellClassName" :header-cell-class-name="tableCellClassName"
+            @selection-change="handleSelectionChange">
+            <el-table-column type="selection" width="55">
+            </el-table-column>
+            <el-table-column prop="id" label="ID" width="130">
+            </el-table-column>
+            <el-table-column prop="name" label="商品信息" min-width="300">
+                <template slot-scope="scope">
+                    <div class="display-flex">
+                        <div class="table-image">
+                            <el-image :src="Fast.api.cdnurl(scope.row.image)" fit="contain">
+                                <div slot="error" class="image-slot">
+                                    <i class="el-icon-picture-outline"></i>
+                                </div>
+                            </el-image>
+                        </div>
+                        <div>
+                            <div class="ellipsis-item" style="margin-top: 8px;line-height: 1;">
+                                {{scope.row.title}}
+                            </div>
+                            <div class="display-flex" style="margin-top: 14px;">
+                                <span v-if="scope.row.is_sku==1"
+                                    style="color: #444;margin-right: 12px;line-height: 20px;">
+                                    {{scope.row.is_sku==1?'多规格':''}}
+                                </span>
+                                <div v-if="scope.row.activity_type || scope.row.app_type"
+                                    class="activity-type display-flex">
+
+                                    <div v-if="scope.row.app_type" class="activity-tags full-activity-tag">
+                                        {{scope.row.app_type_text}}
+                                    </div>
+                                    <template v-for="(b,a) in scope.row.activity_type_text_arr">
+                                        <template v-if="a=='groupon'">
+                                            <div class="activity-tags groupon-activity-tag">
+                                                拼团
+                                            </div>
+                                        </template>
+                                        <div v-if="a=='seckill'" class="activity-tags seckill-activity-tag">{{b}}</div>
+                                        <div v-if="a=='full_reduce' || a=='full_discount' || a=='free_shipping'"
+                                            class="activity-tags full-activity-tag">{{b}}</div>
+                                    </template>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column label="分销规则" width="100">
+                <template slot-scope="scope">
+                    <div v-if="scope.row.commission && scope.row.commission.status==1">
+                        <div v-if="scope.row.commission.self_rules==0">默认规则</div>
+                        <div v-if="scope.row.commission.self_rules==1">独立规则</div>
+                        <div v-if="scope.row.commission.self_rules==2">批量规则</div>
+                    </div>
+                    <div v-if="!scope.row.commission || (scope.row.commission && scope.row.commission.status==0)">
+                        -
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column label="商品状态" width="100">
+                <template slot-scope="scope">
+                    {{scope.row.status_text}}
+                </template>
+            </el-table-column>
+            <el-table-column label="操作" fixed="right" width="220">
+                <template slot-scope="scope">
+                    <div>
+                        <span class="shopro-edit-text" @click="operation('edit',scope.row)">设置佣金</span>
+                        <span class="shopro-detail-text" v-if="scope.row.commission">
+                            <span v-if="scope.row.commission && scope.row.commission.status==0"
+                                @click="operation('join',scope.row)">参与</span>
+                            <span style="color:#ff5959;" v-if="scope.row.commission && scope.row.commission.status==1"
+                                @click="operation('nojoin',scope.row)">不参与</span>
+                        </span>
+                        <span class="shopro-detail-text" v-if="!scope.row.commission"
+                            @click="operation('join',scope.row)">参与</span>
+                    </div>
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+    <div class="shopro-pagination-container">
+        <div class="display-flex">
+            <div style="margin-right: 40px;">
+                <el-checkbox v-model="allcheckeds" @change="changeAllcheckeds">批量设置</el-checkbox>
+            </div>
+            <div class="display-flex multiple-set-item" :class="multipleSelection.length>0?'multiple-set-acitve':''">
+                <div class="multiple-set-acitve-1" @click="operation('join',0)">参与</div>
+                <div class="multiple-set-acitve-2" @click="operation('nojoin',0)">不参与</div>
+                <div class="multiple-set-acitve-3" @click="operation('edit',0)">设置佣金</div>
+            </div>
+        </div>
+
+        <el-pagination @size-change="pageSizeChange" @current-change="pageCurrentChange" :current-page="currentPage"
+            :page-sizes="[10, 20, 30, 40]" :page-size="limit" layout="total, sizes, prev, pager, next, jumper"
+            :total="totalPage" pager-count="5">
+        </el-pagination>
+    </div>
+</div>

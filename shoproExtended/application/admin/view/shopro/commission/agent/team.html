@@ -1,0 +1,281 @@
+<link rel="stylesheet" href="__CDN__/assets/addons/shopro/libs/element/element.css">
+<link rel="stylesheet" href="__CDN__/assets/addons/shopro/libs/common.css">
+<style>
+    #agentTeam {
+        color: #58575A;
+        font-size: 12px;
+        padding: 10px;
+        font-family: Noto Sans SC;
+        font-weight: 400;
+    }
+
+    .theme-cursor {
+        color: #6E3DC8;
+        cursor: pointer;
+    }
+
+    .crumbs-item-container {
+        margin: 0 0px 20px;
+        width: auto;
+        overflow-x: auto;
+    }
+
+    .crumbs-item-1 {
+        color: #626066;
+        cursor: pointer;
+    }
+
+    .crumbs-item-1:hover,
+    .crumbs-item-id:hover {
+        color: #6E3DC8;
+    }
+
+    .crumbs-item {
+        color: #9E9E9E;
+    }
+
+    .crumbs-item-id {
+        cursor: pointer;
+    }
+
+    .crumbs-item i {
+        margin: 0 10px;
+    }
+
+    .shopro-screen-container .shopro-screen-condition {
+        width: 160px;
+    }
+
+    .shopro-screen-container .shopro-screen-condition-1 {
+        width: 240px;
+    }
+
+    .shopro-screen-container .shopro-screen-item {
+        margin-right: 14px;
+    }
+
+    .agent-dashboard {
+        margin-bottom: 20px;
+    }
+
+    .agent-dashboard-contanmer {
+        padding: 14px 14px 0;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .agent-dashboard-contanmer-nodata {
+        padding-bottom: 14px;
+    }
+
+    .agent-dashboard-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 14px;
+    }
+
+    .agent-dashboard-item-tip {
+        margin-right: 6px;
+    }
+
+    .shopro-screen-container,
+    .shopro-table-container{
+        padding: 0;
+    }
+    .shopro-pagination-container {
+        padding: 30px 0 10px;
+    }
+
+    .table-dashboard-item-dot {
+        width: 8px;
+        height: 8px;
+        background: #8644F2;
+        border-radius: 50%;
+        margin-right: 10px;
+        display: inline-block;
+    }
+
+    .dot-2 {
+        background: #E6A93C;
+    }
+
+    .dot-3 {
+        background: #687FF4;
+    }
+
+    .dot-4 {
+        background: #F08972;
+    }
+
+    .dot-5 {
+        background: #EC5B55;
+    }
+
+    .el-cascader-node.in-active-path,
+    .el-cascader-node.is-active,
+    .el-cascader-node.is-selectable.in-checked-path {
+        color: #8644F2;
+        font-weight: 700;
+    }
+
+    .unit-tip-item{
+        color: #626066;
+        font-size: 12px;
+        margin-left: 6px;
+        line-height: 18px;
+    }
+    .shopro-container-scrollbar::-webkit-scrollbar{
+        height: 6px;
+    }
+    .el-popover-container{
+        width: 170px;
+        height: 200px;
+        overflow: auto;
+    }
+    .el-checkbox-group{
+        display: flex;
+        flex-direction: column;
+    }
+    .el-icon-container{
+        font-size: 16px;
+        color: #626662;
+    }
+    .flex-between{
+        justify-content: space-between;
+    }
+    .shopro-screen-item{
+        margin-bottom: 20px;
+    }
+    .filter-color-normal {
+        color: #444;
+    }
+
+    .filter-color-forbidden{
+        color: #ED655F;
+    }
+
+    .filter-color-pending{
+        color: #999;
+    }
+
+    .filter-color-freeze{
+        color: #687FF4;
+    }
+    .nice-validator .el-input__inner{
+        vertical-align: baseline !important;
+    }
+    [v-cloak] {
+        display: none
+    }
+</style>
+<script src="__CDN__/assets/addons/shopro/libs/vue.js"></script>
+<script src="__CDN__/assets/addons/shopro/libs/element/element.js"></script>
+<script src="__CDN__/assets/addons/shopro/libs/moment.js"></script>
+<div id="agentTeam" v-cloak>
+    <div class="crumbs-item-container shopro-container-scrollbar">
+        <span class="crumbs-item-1" @click="operation('clickteamdelete')" v-if="parent_user[0]">{{blockSearchId}}</span>
+        <span class="crumbs-item" v-for="(titem,tindex) in tableIdArr">
+            <i class="el-icon-arrow-right"></i>
+            <span class="crumbs-item-id" v-if="tindex<tableIdArr.length-1"
+                @click="operation('clickteamdelete',titem)">{{titem}}</span>
+            <span v-if="tindex==tableIdArr.length-1">{{titem}}</span>
+        </span>
+    </div>
+    <div class="display-flex flex-between">
+        <div class="shopro-screen-container">
+            <div class="display-flex shopro-screen-item">
+                <div class="shopro-screen-condition shopro-screen-condition-1">
+                    <el-input placeholder="请输入内容" v-model="searchForm.form_1_value" class="input-with-select" size="small"
+                        @input="debounceFilter">
+                        <el-select v-model="searchForm.form_1_key" slot="prepend" placeholder="请选择">
+                            <el-option label="会员ID" value="id"></el-option>
+                            <el-option label="会员昵称" value="nickname"></el-option>
+                            <el-option label="会员手机号" value="mobile"></el-option>
+                        </el-select>
+                    </el-input>
+                </div>
+            </div>
+            <div class="display-flex shopro-screen-item">
+                <div class="shopro-screen-tip">分销商等级</div>
+                <div class="shopro-screen-condition">
+                    <el-select v-model="searchForm.level" placeholder="请选择" size="small" @change="debounceFilter">
+                        <el-option v-for="item in agentLevelList" :key="item.level" :label="item.name+'(等级'+item.level+')'"
+                            :value="item.level">
+                            {{item.name}}(等级{{item.level}})
+                        </el-option>
+                    </el-select>
+                </div>
+            </div>
+        </div>
+        <div class="display-flex shopro-screen-item">
+            <el-popover
+                placement="bottom"
+                width="170"
+                trigger="click">
+                <div class="el-popover-container shopro-container-scrollbar">
+                    <el-checkbox-group v-model="dashboardIdList">
+                        <el-checkbox :label="item.value" v-for="item in dashboardList">{{item.label}}</el-checkbox>
+                      </el-checkbox-group>
+                </div>
+                <span slot="reference" class="el-icon-container">
+                    <i class="el-icon-s-grid"></i>
+                    <i class="el-icon-caret-bottom"></i>
+                </span>
+            </el-popover>
+        </div>
+    </div>
+    <div v-loading="teamAjax">
+        <div style="margin-bottom: 14px;">
+            <el-table :data="parent_user" border>
+                <template v-for="(item, index) in columns">
+                    <el-table-column :key="index" :fixed="item.fixed" :prop="item.field"
+                        :align="item.align ? item.align : 'center'" :min-width="item.width" v-if="dashboardIdList.includes(item.field)">
+                        <template slot="header" slot-scope="scope">
+                            <div>
+                                {{item.field=='avatar-nickname'?'当前用户':item.title}}
+                            </div>
+                        </template>
+                        <template slot-scope="scope">
+                            <template>
+                                    <div class="display-flex" v-if="item.type=='vhtml'" v-html="item.formatter(scope.row,item.outterfield,item.field)">
+                                    </div>
+                                    <div class="display-flex" v-if="item.type=='click'" v-html="item.formatter(scope.row,item.outterfield,item.field)"></div>
+                                    <div v-if="item.type=='vmodel'">{{scope.row[item.field]}}</div>
+                            </template>
+                        </template>
+                    </el-table-column>
+                </template>
+            </el-table>
+        </div>
+        <div class="shopro-table-container">
+            <el-table :data="teamList" border>
+                <template v-for="(item, index) in columns">
+                    <el-table-column :key="index" :fixed="item.fixed" :prop="item.field"
+                        :align="item.align ? item.align : 'center'" :min-width="item.width" v-if="dashboardIdList.includes(item.field)">
+                        <template slot="header" slot-scope="scope">
+                            <div>
+                                {{item.title}}
+                            </div>
+                        </template>
+                        <template slot-scope="scope">
+                            <template>
+                                    <div class="display-flex" v-if="item.type=='vhtml'" v-html="item.formatter(scope.row,item.outterfield,item.field)">
+                                    </div>
+                                    <div class="display-flex" style="cursor: pointer;color:#8644F2;" v-if="item.type=='click'" v-html="item.formatter(scope.row,item.outterfield,item.field)"
+                                        @click="operation('clickteam',scope.row.id)"></div>
+                                    <div v-if="item.type=='vmodel'">{{scope.row[item.field]}}</div>
+                            </template>
+                        </template>
+                    </el-table-column>
+                </template>
+            </el-table>
+        </div>
+    </div>
+    <div class="shopro-pagination-container">
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" pager-count="5"
+            :current-page="currentPage" :page-size="limit" :page-sizes="[10, 20, 30, 40]" layout="total, sizes, prev, pager, next, jumper"
+            :total="totalPage">
+        </el-pagination>
+    </div>
+</div>

@@ -1,0 +1,791 @@
+/*
+ * @Author: Jerry.deng 
+ * @Date: 2018-10-10 14:19:47 
+ * @Last Modified by: 邓福兵
+ * @Last Modified time: 2019-05-07 15:16:30
+ * @Last Modified by: Alan.zheng
+ * @Last Modified time: 2020-06-18 14:21:44
+ */
+
+img {
+    max-width: 100%;
+}
+
+.form-group input[type="file"] {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.ziliao .form-description {
+    height: 140px;
+}
+
+.resetBudget {
+    height: 40px;
+}
+
+.form-border {
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+}
+
+.form_file {
+    position: relative;
+}
+
+.form_file .btn {
+    min-width: 100px;
+    border-radius: 0;
+    background-color: #ff2727;
+    color: #fff;
+    text-align: center;
+}
+
+.ziliaoCheckbox {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.ziliao .form-horizontal .control-label {
+    font-size: 100%;
+}
+
+.form-inline-ziliao .form-control {
+    width: auto;
+}
+
+.form_file:hover,
+#test-image-file:hover {
+    cursor: pointer;
+}
+
+.buop_title {
+    position: relative;
+    height: 40px;
+    font-size: 16px;
+    line-height: 40px;
+}
+
+.buop_title::before {
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    width: 4px;
+    height: 20px;
+    background-color: #248ad2;
+    content: "";
+}
+
+.zlTitle {
+    position: relative;
+    height: 487px;
+    background: url(/../static/merchant/img/buo-bg-5.png) no-repeat center center;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: normal;
+}
+
+.checkbox label {
+    width: auto;
+}
+
+.ziliao .form-group .check-img {
+    position: relative;
+    padding-left: 20px;
+}
+
+#releaseAdd .OpenFloatBox .form-control-feedback {
+    height: 20px;
+    line-height: 20px;
+}
+
+.btn-code {
+    height: 40px;
+    border-color: #eee;
+}
+
+.check-img input {
+    opacity: 0;
+}
+
+.check-img:before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #eee;
+    content: ' ';
+    transform: translateY(-50%);
+}
+
+.check-img.cur:before {
+    border: 0;
+    background: url(/../static/merchant/img/gou.png) no-repeat center center;
+}
+
+.ziliao {
+    margin-top: 0;
+    padding: 60px;
+    border-bottom: 1px solid #eee;
+    box-shadow: none
+}
+
+.form-inline .checkbox input[type="radio"],
+.form-inline .checkbox input[type="checkbox"] {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    margin-left: 0;
+}
+
+.form-horizontal .radio,
+.form-horizontal .checkbox,
+.form-horizontal .radio-inline,
+.form-horizontal .checkbox-inline {
+    float: left;
+    margin-right: 3%;
+    width: 30%;
+}
+
+.form-inline {
+    line-height: 40px;
+}
+
+.form-group select {
+    margin-top: 5px;
+}
+
+.form_bgred {
+    margin-top: 30px;
+    min-width: 10em;
+    border: 0;
+    border-radius: 0;
+    background: #ff2727;
+    color: #fff;
+    ;
+}
+
+.sltinput[readonly] {
+    background: none;
+}
+
+.form_bgred:hover {
+    color: #fffeee
+}
+
+.clear {
+    clear: both;
+    height: 0px;
+    font-size: 0px;
+    line-height: 0px;
+}
+
+
+/* OpenFloatBox */
+
+.OpenFloatBoxBg {
+    position: absolute;
+    display: none;
+    background: #666666
+}
+
+.OpenFloatBox {
+    position: absolute;
+    width: 100%;
+    border: #f1f1f1 1px solid;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .1);
+}
+
+.OpenFloatBox .title {
+    height: 30px;
+    background: #fff;
+    color: #333333
+}
+
+.OpenFloatBox .title h4 {
+    float: left;
+    margin: 0px;
+    padding: 7px 10px 0px 10px;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.OpenFloatBox .title .DialogClose {
+    display: block;
+    float: right;
+    width: 30px;
+    height: 30px;
+    cursor: pointer
+}
+
+.OpenFloatBox .title .spanhover {
+    background-position: 0px -60px
+}
+
+.OpenFloatBox .tip {
+    padding-left: 26px;
+    height: 30px;
+    background: #fff;
+    color: #ff2727;
+    line-height: 30px;
+}
+
+.OpenFloatBox .selecteditem {
+    display: none;
+    padding: 10px 0;
+    width: 100%;
+    border: #ff9966 1px solid;
+    background-color: #fffeee;
+    color: #ff0000;
+}
+
+.OpenFloatBox .selecteditem .empty {
+    color: #0066cc;
+    cursor: pointer
+}
+
+.OpenFloatBox .selecteditem label {
+    display: block;
+    float: left;
+    margin-right: 5px;
+    padding-left: 5px;
+    width: 145px;
+    color: #339900;
+    cursor: pointer;
+}
+
+.OpenFloatBox .txt {
+    padding: 0px 15px 15px 15px;
+}
+
+.OpenFloatBox .tip {
+    color: gray;
+    font-size: 12px;
+}
+
+.OpenFloatBox .content {
+    padding-top: 20px;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.OpenFloatBox .content .item {
+    position: relative;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    width: 150px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.OpenFloatBox .content .item:hover {
+    cursor: pointer;
+}
+
+.OpenFloatBox .content .item input {
+    position: absolute;
+    margin-right: 5px;
+    margin-left: -20px;
+}
+
+.item .check_img {
+    top: 60%;
+}
+
+.OpenFloatBox .content .item .titem {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: 150px;
+}
+
+.OpenFloatBox .content .item .titemhover {
+    border: #ff9900 1px solid;
+    background-color: #fffef0;
+    color: #ff2727;
+    font-weight: bold;
+}
+
+.OpenFloatBox .content .item .sitem {
+    position: absolute;
+    z-index: 2;
+    display: none;
+    margin-top: 20px;
+    width: 150px;
+    border: #ff9900 1px solid;
+    background-color: #fffef0;
+}
+
+.OpenFloatBox .content .item .sitem label {
+    padding-bottom: 5px;
+    line-height: 23px
+}
+
+
+/* but80 */
+
+.but80,
+.but90 {
+    width: 81px;
+    height: 32px;
+    border: 0;
+    background: #ff2727;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.but90 {
+    border: 1px solid #eee;
+    background: #fff;
+    color: #666;
+}
+
+.but80_hover {
+    background-position: 0px -32px;
+}
+
+
+/* 新 */
+
+.buop_open_text {
+    border-left: 1px solid #eee;
+}
+
+.buop_open_text a {
+    padding: .47rem 0;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.buop_open_text a p {
+    margin-top: 0.1rem;
+    color: #666
+}
+
+.swiper_news {
+    height: 300px;
+}
+
+.buop_open_title {
+    position: relative;
+    padding: 10px 15px;
+    height: 46px;
+    border-bottom: 1px solid #eee;
+}
+
+#main_map {
+    margin-top: 10px
+}
+
+.buop_sup {
+    padding-top: 15px;
+}
+
+.buop_sup .dd .form-control {
+    height: 44px;
+    font-size: 18px;
+}
+
+.buop_open .col-md-7 {
+    padding-left: 0;
+}
+
+.buop_sup ul {
+    display: none;
+}
+
+.buop_p {
+    padding: 10px 30px;
+    color: #333366
+}
+
+.buop_pb {
+    padding: 5px;
+}
+
+#main_map {
+    height: 620px;
+}
+
+.bgRed {
+    padding: 5px;
+    background-color: #ff0000;
+    color: #fff;
+    vertical-align: text-bottom;
+}
+
+.buop_gd_left {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+}
+
+.buop_gd_text {
+    display: block;
+    padding-right: 50px;
+    padding-left: 120px;
+    width: 100%;
+}
+
+.buop_gd {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    z-index: 2;
+    transform: translateY(-50%);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    width: 55px;
+    height: 55px;
+    background-color: #ccc;
+    opacity: .85;
+}
+
+.dd_close {
+    right: auto;
+}
+
+.offline-meeting .box {
+    padding: 30px;
+}
+
+.mybuop_title {
+    padding: 30px;
+}
+
+.mybuop_title b {
+    position: relative;
+    display: inline-block;
+    font-size: 26px;
+}
+
+.mybuop_title b:before,
+.mybuop_title b:after {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 2px;
+    background: #333;
+    content: '';
+}
+
+.mybuop_title b:before {
+    left: -55px;
+}
+
+.mybuop_title b:after {
+    right: -55px;
+}
+
+.mybuop_title .p {
+    color: gray;
+    font-size: 16px;
+}
+
+.publish-form {
+    position: relative;
+    margin-top: -60px;
+    padding: 15px 30px 30px 30px;
+    border-radius: 40px 0 40px 0;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+}
+
+.publish-form.fixed {
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    z-index: 9;
+    transform: translateX(-50%);
+}
+
+.publish-form-title {
+    margin: 15px 0;
+}
+
+.publish-form .buop_sup {
+    position: static;
+}
+
+.publish-form .buop_sup .dd .right_two .btn.btn-default {
+    border: 0;
+    background-image: linear-gradient(#f5c200, #f59c00);
+    box-shadow: none;
+}
+
+.publish-form .buop_sup .form-control {
+    border: 1px solid #21418c;
+}
+
+.publish-form .buop_sup .dd>.input-group {
+    margin: 0 10px 0 0;
+}
+
+.publish-form .buop_sup .dd .input-group-addon {
+    border: 1px solid #21418c;
+    background: #21418c;
+    color: #fff;
+}
+
+.publish-form .buop_sup .dd .right_one {
+    width: 25%;
+}
+
+.publish-form .buop_sup .dd .right_three {
+    width: 15%;
+}
+
+.publish-advantaces .box {
+    margin: 0 5%;
+    padding: 20px;
+    border-radius: 30px 30px 0 30px;
+    background: #fff;
+}
+
+.publish-advantaces .box:hover {
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+}
+
+.publish-processes {
+    margin: 30px 0;
+    height: 570px;
+    background: url('../img/publish-bg-1.jpg') no-repeat center center;
+}
+
+.publish-slide {
+    margin-bottom: 30px;
+}
+
+.publish-tab-title {
+    position: relative;
+    z-index: 2;
+    margin: 0 15px;
+    padding: 10px 15px;
+    border-radius: 3px;
+    background: #2b7be3;
+    color: #fff;
+    font-size: 18px;
+}
+
+.publish-tab-title a {
+    margin-top: 3px;
+    color: #fff;
+    font-size: 15px;
+}
+
+.publish-box-hot li {
+    position: relative;
+    margin: 8px 0;
+    padding-left: 15px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.publish-box-jcs li {
+    margin: 0;
+}
+
+.publish-box-hot li p {
+    color: gray;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.publish-box-hot li p:first-child {
+    margin-top: 5px;
+}
+
+.publish-box-hot li::before {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #2b7be3;
+    content: '';
+}
+
+.publish-slide .box {
+    position: relative;
+    z-index: 1;
+    margin-top: -20px;
+    padding: 30px 15px 15px;
+    border: 1px solid #e2efff;
+}
+
+
+/*END 新 */
+
+@media screen and (max-width:768px) {
+    .offline-meeting .box {
+        padding: 15px;
+    }
+    .buop_sup {
+        display: block
+    }
+    .buop_sup_bot {
+        display: none
+    }
+    .buop_gd_text {
+        padding-left: 0;
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none
+    }
+    .mybuop_title {
+        position: relative;
+        margin: 10px 0;
+        padding: 0;
+        text-align: left;
+        text-indent: 0.5rem;
+        line-height: 1.5;
+    }
+    .mybuop_title b,
+    .mybuop_title p {
+        display: inline;
+        color: #555;
+        font-size: .45rem;
+    }
+    .mybuop_title b:before,
+    .mybuop_title b:after {
+        display: none;
+    }
+    .mybuop_title::after {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 4px;
+        height: 18px;
+        border-radius: 2px;
+        background-color: #333;
+        content: '';
+        transform: translateY(-50%)
+    }
+    .buop_gd {
+        margin: 0;
+    }
+    .buop_open_title {
+        padding: 10px;
+    }
+    .buop_p {
+        padding: 10px 5px;
+    }
+    .f-22 {
+        font-size: 16px;
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+        background-size: 14px 22px;
+    }
+    #main_map {
+        height: 9rem;
+    }
+    .buop_open .col-md-7 {
+        padding: 0
+    }
+    .zlTitle {
+        position: relative;
+        height: 5.58rem;
+        background-image: url('../img/buo-bg-5-m.png');
+        background-size: 100% 100%;
+    }
+    .publish-form {
+        margin: -30px 15px 0 15px;
+        padding: 15px 15px 30px 15px;
+    }
+    .publish-form .buop_sup .dd .right_one,
+    .publish-form .buop_sup .dd .right_three {
+        margin: 10px 0 15px 0;
+        width: 37.9%;
+    }
+    .publish-form .buop_sup .dd .right_one {
+        margin-right: 2%;
+        width: 60%;
+    }
+    .publish-form .buop_sup .dd_left .form-control {
+        width: 100%;
+        height: 4.5em;
+    }
+    .publish-title {
+        max-width: 90%;
+    }
+    .buop_sup .dd {
+        display: block;
+        padding-bottom: 0;
+    }
+    .buop_sup .dd .form-control {
+        width: 100%;
+    }
+    .publish-processes {
+        margin-top: 0;
+        height: 10.14rem;
+        background-image: url(../img/publish-bg-1-m.png);
+        background-size: 100% 100%;
+    }
+    .buop_sup .dd .form-control,
+    .publish-form .buop_sup .dd .input-group-addon {
+        height: 40px;
+        font-size: .3rem;
+    }
+    .ziliao {
+        margin-right: -15px;
+        margin-left: -15px;
+        padding: 15px;
+    }
+    .form-group {
+        margin-bottom: 5px;
+    }
+    .buop_sup .dd .input-group {
+        float: left;
+        margin: 0 0 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+    .publish-advantaces .box {
+        margin: 10px 0;
+        padding: 10px;
+    }
+    .buop_sup .dd .right_two .btn.btn-default {
+        display: inline-block;
+        margin-left: 25%;
+        padding: 10px;
+        width: 50%;
+        font-size: 16px;
+    }
+    .buop_sup .dd .right_one {
+        width: 65%;
+    }
+    .buop_sup .dd .right_three {
+        float: left;
+        width: 35%;
+    }
+}
+
+@media screen and (max-width:320px) {
+    .zlTitle {
+        height: 270px;
+    }
+    .buop_sup .dd .form-control {
+        height: 40px;
+    }
+    .buop_sup .dd .right_two .btn.btn-default {
+        font-size: 16px;
+    }
+}

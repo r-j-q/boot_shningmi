@@ -1,0 +1,537 @@
+<link rel="stylesheet" href="__CDN__/assets/addons/shopro/libs/element/element.css">
+<link rel="stylesheet" href="__CDN__/assets/addons/shopro/libs/common.css">
+<style>
+    .font-size-12 {
+        font-size: 12px;
+    }
+
+    .color-999 {
+        color: #999;
+    }
+
+    .color-22D38D {
+        color: #22D38D;
+    }
+
+    .margin-left-10 {
+        margin-left: 10px;
+    }
+
+    /* table */
+    .order-table {
+        padding: 20px 20px 30px;
+        margin-top: 10px;
+        background: #fff;
+        color: #444;
+    }
+
+    .screen-container {
+        background: #fff;
+        flex-wrap: wrap;
+        padding: 0 20px;
+    }
+
+    .screen-item {
+        width: 240px;
+        display: flex;
+        align-items: center;
+        margin: 14px 30px 10px 0;
+    }
+
+    .el-input-group__prepend {
+        width: 116px;
+    }
+
+    .screen-item-time {
+        width: 480px;
+    }
+
+    .screen-item-tip {
+        width: 60px;
+        margin-right: 14px;
+    }
+
+    .expand-container {
+        margin-bottom: 8px;
+        color: #444;
+        width: 100%;
+        border-left: 1px solid #e6e6e6;
+    }
+
+    .expand-item {
+        display: flex;
+        align-items: center;
+        width: 98px;
+        justify-content: center;
+    }
+
+    .expand-item>div {
+        padding: 0 10px;
+    }
+
+    .expand-item-goods {
+        width: 548px;
+        flex-direction: column;
+        /* padding: 0 22px 0 10px; */
+    }
+
+    .expand-item-goods-iamge {
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+        border-radius: 2px;
+        border: 1px solid #E6E6E6;
+    }
+
+    .expand-item-height {
+        height: 80px;
+        width: 100%;
+    }
+
+    .expand-item-goods-container {
+        flex-direction: column;
+        justify-content: space-between;
+        height: 60px;
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .expand-item-goods-title {
+        line-height: 18px;
+        color: #444;
+        font-size: 13px;
+    }
+
+    .expand-item-goods-describe {
+        line-height: 12px;
+        color: #999;
+    }
+
+    .border-right {
+        border-right: 1px solid #E6E6E6;
+    }
+
+    .border-bottom {
+        border-bottom: 1px solid #E6E6E6;
+    }
+
+    .expand-item-commissin-user {
+        width: 110px;
+    }
+
+    .expand-item-commission-describe {
+        width: 294px;
+    }
+
+    .expand-item-commission-describe-image {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 8px;
+    }
+
+    .expand-item-commission-container {
+        justify-content: center;
+    }
+
+    .expand-item-commission-describe-item {
+        /* margin-right: ; */
+        margin-right: 20px;
+    }
+
+    .expand-item-commission-describe-item:last-of-type {
+        margin: 0;
+    }
+
+    .expand-item-commission-time {
+        width: 160px;
+    }
+
+    .expand-item-buyer {
+        width: 140px;
+    }
+
+    .expand-item-commission-money {
+        width: 120px;
+    }
+
+    .shopro-reset-button {
+        margin-right: 20px;
+    }
+
+    .display-flex-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .font-weight {
+        font-weight: 500;
+    }
+
+    .table-image {
+        border-radius: 15px;
+        width: 30px;
+        height: 30px;
+        overflow: hidden;
+        border: 1px solid #e6e6e6;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .popover-container>div {
+        margin-bottom: 12px;
+    }
+
+    .popover-container>div:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .table-dashboard-item-container {
+        width: 20%;
+    }
+
+    .table-dashboard-item {
+        min-height: 46px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
+        margin: 0 5px 14px;
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        color: #58575A;
+        line-height: 16px;
+        flex-wrap: wrap;
+    }
+
+    .table-dashboard-item-tip {
+        width: 138px;
+        /* text-align: center; */
+        padding-left: 20px;
+        height: 46px;
+        line-height: 46px;
+    }
+
+    .table-dashboard-item-form {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        flex: 1;
+        height: 46px;
+        line-height: 46px;
+        min-width: 170px;
+    }
+
+    .table-dashboard-item-unit {
+        margin-left: 4px;
+        line-height: 40px;
+    }
+
+    .table-dashboard-item-num {
+        font-size: 20px;
+        /* line-height: 20px; */
+    }
+
+    .el-table td .cell {
+        height: 60px;
+        display: flex;
+        align-items: center;
+    }
+
+    .table-dashboard-item-dot {
+        width: 8px;
+        height: 8px;
+        background: #8644F2;
+        border-radius: 50%;
+        margin-right: 10px;
+        display: inline-block;
+    }
+
+    .dot-2 {
+        background: #E6A93C;
+    }
+
+    .dot-3 {
+        background: #687FF4;
+    }
+
+    .dot-4 {
+        background: #F08972;
+    }
+
+    .dot-5 {
+        background: #EC5B55;
+    }
+
+    .color-ED655F {
+        color: #ED655F;
+    }
+
+    .table-dashboard-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .nice-validator .el-input__inner {
+        vertical-align: baseline !important;
+    }
+
+    .commission-avatar {
+        width: 36px;
+        height: 36px;
+        border: 1px solid #E6E6E6;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .commission-nickname {
+        justify-content: center;
+        cursor: pointer;
+        color: #8644F2;
+    }
+
+    .commission-order-sn {
+        cursor: pointer;
+        color: #8644F2;
+    }
+
+    .table-user-container {
+        flex-direction: column;
+    }
+
+    [v-cloak] {
+        display: none
+    }
+</style>
+<script src="__CDN__/assets/addons/shopro/libs/vue.js"></script>
+<script src="__CDN__/assets/addons/shopro/libs/element/element.js"></script>
+<script src="__CDN__/assets/addons/shopro/libs/moment.js"></script>
+<div id="orderIndex" v-cloak>
+    <div class="screen-container display-flex" v-if="!searchForm.id">
+        <div class="shopro-button shopro-refresh-button" @click="reqOrderList">
+            <i class="el-icon-refresh"></i>
+        </div>
+        <div class="screen-item">
+            <el-input placeholder="请输入内容" v-model="searchForm.form_1_value" class="screen-item-select" size="small">
+                <el-select v-model="searchForm.form_1_key" slot="prepend" placeholder="请选择">
+                    <el-option label="下单用户ID" value="buyer_id"></el-option>
+                    <el-option label="下单用户昵称" value="buyer_nickname"></el-option>
+                    <el-option label="下单用户手机号" value="buyer_mobile"></el-option>
+                </el-select>
+            </el-input>
+        </div>
+        <div class="screen-item">
+            <el-input placeholder="请输入内容" v-model="searchForm.form_2_value" class="screen-item-select" size="small">
+                <el-select v-model="searchForm.form_2_key" slot="prepend" placeholder="请选择">
+                    <el-option label="分销用户ID" value="agent_id"></el-option>
+                    <el-option label="分销用户昵称" value="agent_nickname"></el-option>
+                    <el-option label="分销用户手机号" value="agent_mobile"></el-option>
+                </el-select>
+            </el-input>
+        </div>
+        <div class="screen-item">
+            <div class="screen-item-tip">订单号</div>
+            <el-input placeholder="请输入订单号" v-model="searchForm.order_sn" class="screen-item-input" size="small">
+            </el-input>
+        </div>
+        <div class="screen-item">
+            <div class="screen-item-tip">入账状态</div>
+            <el-select v-model="searchForm.status" placeholder="请选择分佣状态" size="small">
+                <el-option :label="sitem.label" :value="sitem.value" v-for="sitem in searchStatusOption">
+                </el-option>
+            </el-select>
+        </div>
+        <div class="screen-item screen-item-time">
+            <div class="screen-item-tip">分佣时间</div>
+            <div>
+                <el-date-picker v-model="searchForm.createtime" type="datetimerange" value-format="yyyy-MM-dd HH:mm:ss"
+                    size="small" format="yyyy-MM-dd HH:mm:ss" range-separator="至" start-placeholder="开始日期"
+                    end-placeholder="结束日期">
+                </el-date-picker>
+            </div>
+        </div>
+        <div class="screen-item shopro-screen-item-button">
+            <div class="shopro-button shopro-reset-button" @click="screenEmpty">重置</div>
+            <div class="shopro-button shopro-screen-button" @click="handleCurrentChange(1)">筛选</div>
+        </div>
+    </div>
+    <div class="order-table" v-loading="isAjax">
+        <div class="table-dashboard-container">
+            <div class="table-dashboard-item-container">
+                <div class="table-dashboard-item">
+                    <div class="table-dashboard-item-tip">
+                        <span class="table-dashboard-item-dot"></span>
+                        佣金单数:
+                    </div>
+                    <div class="table-dashboard-item-form">
+                        <span class="table-dashboard-item-num">{{dashboard.total}}</span>
+                        <span class="table-dashboard-item-unit">单</span>
+                    </div>
+                </div>
+            </div>
+            <div class="table-dashboard-item-container">
+                <div class="table-dashboard-item">
+                    <div class="table-dashboard-item-tip">
+                        <span class="table-dashboard-item-dot dot-2"></span>
+                        累计佣金:
+                    </div>
+                    <div class="table-dashboard-item-form">
+                        <span class="table-dashboard-item-num">{{dashboard.commission_total}}</span>
+                        <span class="table-dashboard-item-unit">元</span>
+                    </div>
+                </div>
+            </div>
+            <div class="table-dashboard-item-container">
+                <div class="table-dashboard-item">
+                    <div class="table-dashboard-item-tip">
+                        <span class="table-dashboard-item-dot dot-3"></span>
+                        已到账佣金:
+                    </div>
+                    <div class="table-dashboard-item-form">
+                        <span class="table-dashboard-item-num">{{dashboard.commissioned_total}}</span>
+                        <span class="table-dashboard-item-unit">元</span>
+                    </div>
+                </div>
+            </div>
+            <div class="table-dashboard-item-container">
+                <div class="table-dashboard-item">
+                    <div class="table-dashboard-item-tip">
+                        <span class="table-dashboard-item-dot dot-4"></span>
+                        待入账佣金:
+                    </div>
+                    <div class="table-dashboard-item-form">
+                        <span class="table-dashboard-item-num">{{dashboard.delay_total}}</span>
+                        <span class="table-dashboard-item-unit">元</span>
+                    </div>
+                </div>
+            </div>
+            <div class="table-dashboard-item-container">
+                <div class="table-dashboard-item">
+                    <div class="table-dashboard-item-tip">
+                        <span class="table-dashboard-item-dot dot-5"></span>
+                        已退回佣金:
+                    </div>
+                    <div class="table-dashboard-item-form">
+                        <span class="table-dashboard-item-num">{{dashboard.commission_back_total}}</span>
+                        <span class="table-dashboard-item-unit">元</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <el-table :data="orderList" style="width: 100%" ref="multipleTable" tooltip-effect="dark" border stripe
+                default-expand-all="true" @selection-change="handleSelectionChange">
+                <el-table-column width="70" label="ID">
+                    <template slot-scope="scope">
+                        {{scope.row.order.id}}
+                    </template>
+                </el-table-column>
+                <el-table-column width="220" label="订单号">
+                    <template slot-scope="scope">
+                        <span class="commission-order-sn"
+                            @click="openCommissonOrder(scope.row.order)">{{scope.row.order.order_sn}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column min-width="160" label="下单用户">
+                    <template slot-scope="scope">
+                        <el-popover placement="bottom" trigger="hover" width="180">
+                            <div v-if="scope.row.buyer" class="popover-container">
+                                <div class="display-flex">
+                                    <div class="display-flex">
+                                        <div class="popover-tip">用户ID</div>：
+                                    </div>
+                                    <div class="active-cursor-line">
+                                        {{scope.row.buyer.id}}
+                                    </div>
+                                </div>
+                                <div class="display-flex" v-if="scope.row.buyer && scope.row.buyer.mobile">
+                                    <div class="display-flex">
+                                        <div class="popover-tip">手机号</div>：
+                                    </div>
+                                    <div>{{scope.row.buyer.mobile}}</div>
+                                </div>
+                            </div>
+                            <div v-if="scope.row.buyer" slot="reference" class="table-user-container display-flex">
+                                <div class="commission-avatar">
+                                    <el-image :src="Fast.api.cdnurl(scope.row.buyer.avatar)" fit="contain">
+                                        <div slot="error" class="image-slot">
+                                            <i class="el-icon-picture-outline"></i>
+                                        </div>
+                                    </el-image>
+                                </div>
+                                <div class="ellipsis-item commission-nickname">{{scope.row.buyer.nickname}}</div>
+                            </div>
+                        </el-popover>
+                        <span v-if="!scope.row.buyer">-</span>
+                    </template>
+                </el-table-column>
+                <el-table-column min-width="160" label="分销用户">
+                    <template slot-scope="scope">
+                        <el-popover placement="bottom" trigger="hover" width="180">
+                            <div v-if="scope.row.agent" class="popover-container">
+                                <div class="display-flex">
+                                    <div class="display-flex">
+                                        <div class="popover-tip">用户ID</div>：
+                                    </div>
+                                    <div class="active-cursor-line">
+                                        {{scope.row.agent.id}}
+                                    </div>
+                                </div>
+                                <div class="display-flex" v-if="scope.row.agent && scope.row.agent.mobile">
+                                    <div class="display-flex">
+                                        <div class="popover-tip">手机号</div>：
+                                    </div>
+                                    <div>{{scope.row.agent.mobile}}</div>
+                                </div>
+                            </div>
+                            <div v-if="scope.row.agent" class="table-user-container display-flex" slot="reference">
+                                <div class="commission-avatar">
+                                    <el-image :src="Fast.api.cdnurl(scope.row.agent.avatar)" fit="contain">
+                                        <div slot="error" class="image-slot">
+                                            <i class="el-icon-picture-outline"></i>
+                                        </div>
+                                    </el-image>
+                                </div>
+                                <div class="ellipsis-item commission-nickname"
+                                    @click="operation('edit',scope.row.agent.id)">
+                                    {{scope.row.agent.nickname}}
+                                </div>
+                            </div>
+                        </el-popover>
+                        <span v-if="!scope.row.agent">-</span>
+                    </template>
+                </el-table-column>
+                <el-table-column min-width="90" prop="commission" label="分佣金额">
+                    <template slot-scope="scope">
+                        <div class="ellipsis-item">{{scope.row.commission}}元</div>
+                    </template>
+                </el-table-column>
+                <el-table-column width="90" label="入账状态">
+                    <template slot-scope="scope">
+                        <div class="display-flex" :class="rewardStatusClass(scope.row.status)">
+                            <span class="shopro-status-dot"></span>
+                            <span>{{scope.row.status_text}}</span>
+                        </div>
+                    </template>
+                </el-table-column>
+                <el-table-column width="90" prop="type_text" label="入账方式">
+                </el-table-column>
+                <el-table-column min-width="160" label="分佣时间">
+                    <template slot-scope="scope">
+                        {{moment(scope.row.createtime*1000).format('YYYY-MM-DD HH:mm:ss')}}
+                    </template>
+                </el-table-column>
+            </el-table>
+        </div>
+        <div class="shopro-pagination-container">
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                :current-page="currentPage" :page-sizes="[10, 20, 30, 40]" :page-size="limit"
+                layout="total, sizes, prev, pager, next, jumper" :total="totalPage">
+            </el-pagination>
+        </div>
+    </div>
+</div>

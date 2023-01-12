@@ -1,0 +1,583 @@
+<link rel="stylesheet" href="__CDN__/assets/addons/shopro/libs/element/element.css">
+<link rel="stylesheet" href="__CDN__/assets/addons/shopro/libs/common.css">
+<style>
+    #detailPage {
+        border-radius: 10px;
+        color: #444;
+        font-weight: 500;
+        padding: 0px 10px 60px;
+        position: relative;
+    }
+
+    .el-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .image-slot {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .goods-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 4px;
+        border: 1px solid #e6e6e6;
+        margin-right: 14px;
+    }
+
+    .shopro-submit-container {
+        display: flex;
+        justify-content: flex-end;
+        position: fixed;
+        right: 40px;
+        bottom: 10px;
+        /* width: 100%; */
+        height: 40px;
+    }
+
+    .shopro-submit-button {
+        width: 88px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        background: #7438D5;
+        font-size: 14px;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .sku-price-rate {
+        margin-right: 10px;
+    }
+
+    .sku-price-rate,
+    .sku-price-money {
+        width: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+    }
+
+    .commission-body-container {
+        line-height: 50px;
+        display: flex;
+        border-left: 1px solid #e6e6e6;
+    }
+
+
+
+    .commission-header-container {
+        line-height: 40px;
+        border-left: 1px solid #e6e6e6;
+    }
+
+    .commission-header-container .commission-store-name,
+    .commission-header-container .commission-item,
+    .commission-header-container .commission-sku,
+    .commission-header-container .commission-price {
+        border-top: 1px solid #e6e6e6;
+        background: #f9f9f9;
+    }
+
+    .commission-store-name {
+        width: 120px;
+        min-width: 120px;
+        padding: 0 10px;
+        text-align: center;
+        border-right: 1px solid #e6e6e6;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    .commission-item {
+        width: 190px;
+        min-width: 190px;
+        padding: 0 10px;
+        display: flex;
+        justify-content: center;
+        border-right: 1px solid #e6e6e6;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    .commission-sku,.commission-price {
+        width: 180px;
+        min-width: 180px;
+        padding: 0 20px;
+        border-bottom: 1px solid #e6e6e6;
+        border-right: 1px solid #e6e6e6;
+        text-align: center;
+    }
+
+    .commission-price {
+        width: 100px;
+        min-width: 100px;
+        padding: 0 20px;
+    }
+
+    .commission-item-batch {
+        cursor: pointer;
+    }
+
+    .el-button--text,
+    .el-button--text:hover,
+    .el-button--text:focus {
+        color: #999;
+    }
+
+    .batch-setting-container {
+        line-height: 50px;
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid #e6e6e6;
+    }
+
+    .alone-setting-container {
+        line-height: 50px;
+        display: flex;
+        border-left: 1px solid #e6e6e6;
+    }
+    .commission-order-status-icon{
+        font-size: 20px;
+        color: #7C7C7C;
+        margin-left: 16px;
+    }
+    .el-popover--plain{
+        padding: 12px;
+        color: #444;
+    }
+    .batch-edit-icon{
+        margin-left:10px;margin-top: -3px;
+    }
+    .batch-question-icon{
+        margin-left: 10px;font-size: 14px;
+    }
+    [v-cloak] {
+        display: none
+    }
+</style>
+<script src="__CDN__/assets/addons/shopro/libs/vue.js"></script>
+<script src="__CDN__/assets/addons/shopro/libs/element/element.js"></script>
+<script src="__CDN__/assets/addons/shopro/libs/shopro.js"></script>
+<div id="detailPage" v-cloak>
+    <el-form label-width="124px">
+        <div v-if="isalone==0">
+            <div class="shopro-form-group-title">
+                商品信息
+            </div>
+            <div style="padding: 0 40px;">
+                <div class="display-flex" style="margin-bottom:10px">
+                    <div class="goods-image" v-if="goodsDetail.image">
+                        <el-image :src="Fast.api.cdnurl(goodsDetail.image)" fit="container">
+                            <div slot="error" class="image-slot">
+                                <i class="el-icon-picture-outline"></i>
+                            </div>
+                        </el-image>
+                    </div>
+                    <div class="goods-title">
+                        {{goodsDetail.title}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="shopro-form-group-title">
+                <div class="shopro-form-group-title-line"></div>佣金设置
+            </div>
+            <el-form-item label="是否参与：">
+                <div>
+                    <el-radio-group v-model="status">
+                        <el-radio :label="0">不参与</el-radio>
+                        <el-radio :label="1">参与</el-radio>
+                    </el-radio-group>
+                </div>
+            </el-form-item>
+            <div v-if="status==1">
+                <el-form-item label="佣金规则：">
+                    <div>
+                        <el-radio-group v-model="self_rules" @change="selfRulesChange">
+                            <el-radio :label="0">默认规则</el-radio>
+                            <el-radio v-if="isalone==0" :label="1">独立规则</el-radio>
+                            <el-radio :label="2">批量规则</el-radio>
+                        </el-radio-group>
+                    </div>
+                </el-form-item>
+                <el-form-item label="分销商业绩：">
+                    <div class="display-flex">
+                        <el-radio-group v-model="commission_order_status">
+                            <el-radio :label="0">不计入</el-radio>
+                            <el-radio :label="1">计入</el-radio>
+                        </el-radio-group>
+                        <el-popover
+                            placement="top"
+                            trigger="hover"
+                            content="关闭则只分佣，不计入分销订单金额和订单数">
+                            <i class="el-icon-question commission-order-status-icon" slot="reference"></i>
+                        </el-popover>
+                    </div>
+                </el-form-item>
+                <div v-if="self_rules==1 || self_rules==2">
+                    <el-form-item label="分销设置：">
+                        <el-switch v-model="commission_config" @change="changeCommissionConfig" active-color="#6E3DC8"
+                            :active-value="1" :inactive-value="0" inactive-color="#999">
+                        </el-switch>
+                        <span style="margin-left: 14px;" v-if="commission_config==0">默认设置</span>
+                        <span style="margin-left: 14px;" v-if="commission_config==1">独立设置</span>
+                    </el-form-item>
+                    <div v-if="commission_config==1">
+                        <el-form-item label="分销层级：">
+                            <el-radio-group v-model="commission_config_obj.commission_level">
+                                <el-radio label="1">一级</el-radio>
+                                <el-radio label="2">二级</el-radio>
+                                <el-radio label="3">三级</el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="分销内购：">
+                            <el-radio-group v-model="commission_config_obj.self_buy">
+                                <el-radio label="0">关闭</el-radio>
+                                <el-radio label="1">开启</el-radio>
+                            </el-radio-group>
+                            <div class="title-tip">
+                                内购优惠开启后，分销商自己购买时，下单可以给自己返佣
+                            </div>
+                        </el-form-item>
+                        <el-form-item label="商品结算方式：">
+                            <el-radio-group v-model="commission_config_obj.commission_price_type">
+                                <el-radio label="goods_price">商品价</el-radio>
+                                <el-radio label="pay_price">实际支付价</el-radio>
+                            </el-radio-group>
+                            <div class="title-tip">
+                                商品价: 商品实际售价/规格价，实际支付价: 实际支付的费用(不含运费)
+                            </div>
+                        </el-form-item>
+                        <el-form-item label="佣金结算方式：">
+                            <el-radio-group v-model="commission_config_obj.commission_event">
+                                <el-radio label="payed">支付后结算</el-radio>
+                                <el-radio label="confirm">确认收货结算</el-radio>
+                                <el-radio label="finish">订单完成结算</el-radio>
+                                <el-radio label="admin">手动打款</el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                    </div>
+
+                </div>
+
+                <div style="padding: 0 40px;">
+                    <div v-if="self_rules==0 && radioEnd==0" style="overflow: auto;">
+                        <div class="display-flex goods-header commission-header-container">
+                            <div class="commission-store-name">分销等级名称</div>
+                            <div class="commission-item">一级(自购)佣金比例</div>
+                            <div class="commission-item">二级佣金比例</div>
+                            <div class="commission-item">三级佣金比例</div>
+                        </div>
+                        <div class="display-flex goods-body-item commission-body-container"
+                            v-for="levelItem in levelList">
+                            <div class="commission-store-name">
+                                {{levelItem.name}}
+                            </div>
+                            <div class="commission-item">
+                                {{levelItem.commission_rules.commission_1}}%
+                            </div>
+                            <div class="commission-item">
+                                {{levelItem.commission_rules.commission_2}}%
+                            </div>
+                            <div class="commission-item">
+                                {{levelItem.commission_rules.commission_3}}%
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="self_rules==1 && radioEnd==1" style="overflow: auto;">
+                        <div class="display-flex commission-header-container">
+                            <div class="commission-sku" style="border-bottom: 1px solid #e6e6e6;text-align: center;">
+                                商品规格</div>
+                            <div class="commission-price" style="border-bottom: 1px solid #e6e6e6;text-align: center;">
+                                价格</div>
+                            <div class="commission-store-name">分销商等级</div>
+                            <div class="commission-item">
+                                一级(自购)佣金比例
+                                <el-popover placement="top" width="200" v-model="batchShow[1]">
+                                    <div>
+                                        <div class="display-flex"
+                                            style="justify-content: space-between;padding: 5px 0;">
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="batchList.rate" size="mini" v-enter-number
+                                                    :disabled="batchList.money!=''">
+                                                    <template slot="append">%</template>
+                                                </el-input>
+                                            </div>
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="batchList.money" size="mini" v-enter-number
+                                                    :disabled="batchList.rate!=''">
+                                                    <template slot="append">元</template>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right; margin: 0">
+                                        <el-button size="mini" type="text" @click="batchSet('1','cancel')">取消
+                                        </el-button>
+                                        <el-button type="primary" size="mini" @click="batchSet('1','define')">确定
+                                        </el-button>
+                                    </div>
+                                    <img class="batch-edit-icon" slot="reference"
+                                        src="/assets/addons/shopro/img/goods/batch.png">
+                                </el-popover>
+                            </div>
+                            <div class="commission-item">
+                                二级佣金比例
+                                <el-popover placement="top" content="没有请填写为0" trigger="hover">
+                                    <i slot="reference" class="el-icon-question commission-order-status-icon batch-question-icon"></i>
+                                </el-popover>
+                                <el-popover placement="top" width="200" v-model="batchShow[2]">
+                                    <div>
+                                        <div class="display-flex"
+                                            style="justify-content: space-between;padding: 5px 0;">
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="batchList.rate" size="mini" v-enter-number
+                                                    :disabled="batchList.money!=''">
+                                                    <template slot="append">%</template>
+                                                </el-input>
+                                            </div>
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="batchList.money" size="mini" v-enter-number
+                                                    :disabled="batchList.rate!=''">
+                                                    <template slot="append">元</template>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right; margin: 0">
+                                        <el-button size="mini" type="text" @click="batchSet('2','cancel')">取消
+                                        </el-button>
+                                        <el-button type="primary" size="mini" @click="batchSet('2','define')">确定
+                                        </el-button>
+                                    </div>
+                                    <img class="batch-edit-icon" slot="reference"
+                                        src="/assets/addons/shopro/img/goods/batch.png">
+                                </el-popover>
+                            </div>
+                            <div class="commission-item">
+                                三级佣金比例
+                                <el-popover placement="top" content="没有请填写为0" trigger="hover">
+                                    <i slot="reference" class="el-icon-question commission-order-status-icon batch-question-icon"></i>
+                                </el-popover>
+                                <el-popover placement="top" width="200" v-model="batchShow[3]">
+                                    <div>
+                                        <div class="display-flex"
+                                            style="justify-content: space-between;padding: 5px 0;">
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="batchList.rate" size="mini" v-enter-number
+                                                    :disabled="batchList.money!=''">
+                                                    <template slot="append">%</template>
+                                                </el-input>
+                                            </div>
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="batchList.money" size="mini" v-enter-number
+                                                    :disabled="batchList.rate!=''">
+                                                    <template slot="append">元</template>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right; margin: 0">
+                                        <el-button size="mini" type="text" @click="batchSet('3','cancel')">取消
+                                        </el-button>
+                                        <el-button type="primary" size="mini" @click="batchSet('3','define')">确定
+                                        </el-button>
+                                    </div>
+                                    <img class="batch-edit-icon" slot="reference"
+                                        src="/assets/addons/shopro/img/goods/batch.png">
+                                </el-popover>
+                            </div>
+                        </div>
+                        <div class="alone-setting-container">
+                            <div>
+                                <div class="display-flex" v-for="sku in goodsDetail.sku_price">
+                                    <!-- 规格&价格 -->
+                                <div class="commission-sku" :style="{height:51*levelList.length+'px'}" style="display: flex;justify-content: center;align-items: center;line-height: 20px;">
+                                        <span v-if="goodsDetail.is_sku==1">{{sku.goods_sku_text.join(',')}}</span>
+                                        <span v-if="goodsDetail.is_sku==0">默认规格</span>
+                                    </div>
+                                    <div class="commission-price" :style="{height:51*levelList.length+'px',lineHeight:51*levelList.length+'px'}">{{sku.price}}</div>
+                                    <div>
+                                        <!-- 等级 -->
+                                        <div class="commission-store-name" v-for="(levelItem,level) in levelList">
+                                            {{levelItem.name}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div v-for="levelObj in commission_rules">
+                                    <div class="display-flex" v-for="commissionitem in levelObj">
+                                        <div class="display-flex commission-item">
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="commissionitem[1].rate" size="mini" v-enter-number
+                                                    @input="inputChange" :disabled="commissionitem[1].money!=''">
+                                                    <template slot="append">%</template>
+                                                </el-input>
+                                            </div>
+                                            <div class="sku-price-money">
+                                                <el-input v-model="commissionitem[1].money" size="mini" v-enter-number
+                                                    @input="inputChange" :disabled="commissionitem[1].rate!=''">
+                                                    <template slot="append">元</template>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                        <div class="display-flex commission-item">
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="commissionitem[2].rate" size="mini" v-enter-number
+                                                    @input="inputChange" :disabled="commissionitem[2].money!=''">
+                                                    <template slot="append">%</template>
+                                                </el-input>
+                                            </div>
+                                            <div class="sku-price-money">
+                                                <el-input v-model="commissionitem[2].money" size="mini" v-enter-number
+                                                    @input="inputChange" :disabled="commissionitem[2].rate!=''">
+                                                    <template slot="append">元</template>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                        <div class="display-flex commission-item">
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="commissionitem[3].rate" size="mini" v-enter-number
+                                                    @input="inputChange" :disabled="commissionitem[3].money!=''">
+                                                    <template slot="append">%</template>
+                                                </el-input>
+                                            </div>
+                                            <div class="sku-price-money">
+                                                <el-input v-model="commissionitem[3].money" size="mini" v-enter-number
+                                                    @input="inputChange" :disabled="commissionitem[3].rate!=''">
+                                                    <template slot="append">元</template>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="self_rules==2 && radioEnd==2" style="overflow: auto;">
+                        <div class="display-flex commission-header-container">
+                            <div class="commission-store-name">分销商等级</div>
+                            <div class="commission-item commission-item-batch">
+                                一级(自购)佣金比例
+                                <el-popover placement="top" width="200" v-model="batchShow[1]">
+                                    <div>
+                                        <div class="display-flex" style="padding: 5px 0;">
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="batchList.rate" size="mini" v-enter-number>
+                                                    <template slot="append">%</template>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right; margin: 0">
+                                        <el-button size="mini" type="text" @click="batchSet('1','cancel')">取消
+                                        </el-button>
+                                        <el-button type="primary" size="mini" @click="batchSet('1','define')">确定
+                                        </el-button>
+                                    </div>
+                                    <img class="batch-edit-icon" slot="reference"
+                                        src="/assets/addons/shopro/img/goods/batch.png">
+                                </el-popover>
+                            </div>
+                            <div class="commission-item commission-item-batch">
+                                二级佣金比例
+                                <el-popover placement="top" content="没有请填写为0" trigger="hover">
+                                    <i slot="reference" class="el-icon-question commission-order-status-icon batch-question-icon"></i>
+                                </el-popover>
+                                <el-popover placement="top" width="200" v-model="batchShow[2]">
+                                    <div>
+                                        <div class="display-flex" style="padding: 5px 0;">
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="batchList.rate" size="mini" v-enter-number>
+                                                    <template slot="append">%</template>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right; margin: 0">
+                                        <el-button size="mini" type="text" @click="batchSet('2','cancel')">取消
+                                        </el-button>
+                                        <el-button type="primary" size="mini" @click="batchSet('2','define')">确定
+                                        </el-button>
+                                    </div>
+                                    <img class="batch-edit-icon" slot="reference"
+                                        src="/assets/addons/shopro/img/goods/batch.png">
+                                </el-popover>
+                            </div>
+                            <div class="commission-item commission-item-batch">
+                                三级佣金比例
+                                <el-popover placement="top" content="没有请填写为0" trigger="hover">
+                                    <i slot="reference" class="el-icon-question commission-order-status-icon batch-question-icon"></i>
+                                </el-popover>
+                                <el-popover placement="top" width="200" v-model="batchShow[3]">
+                                    <div>
+                                        <div class="display-flex" style="padding: 5px 0;">
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="batchList.rate" size="mini" v-enter-number>
+                                                    <template slot="append">%</template>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right; margin: 0">
+                                        <el-button size="mini" type="text" @click="batchSet('3','cancel')">取消
+                                        </el-button>
+                                        <el-button type="primary" size="mini" @click="batchSet('3','define')">确定
+                                        </el-button>
+                                    </div>
+                                    <img class="batch-edit-icon" slot="reference"
+                                        src="/assets/addons/shopro/img/goods/batch.png">
+                                </el-popover>
+                            </div>
+                        </div>
+                        <div class="batch-setting-container" style="flex-direction: column;">
+                            <div class="batch-setting-item display-flex" v-for="levelItem in levelList">
+                                <div class="commission-store-name">
+                                    {{levelItem.name}}
+                                </div>
+                                <div>
+                                    <div class="display-flex">
+                                        <div class="display-flex commission-item">
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="commission_rules[levelItem.level][1].rate"
+                                                    size="mini" v-enter-number @input="inputChange">
+                                                    <template slot="append">%</template>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                        <div class="display-flex commission-item">
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="commission_rules[levelItem.level][2].rate"
+                                                    size="mini" v-enter-number @input="inputChange">
+                                                    <template slot="append">%</template>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                        <div class="display-flex commission-item">
+                                            <div class="sku-price-rate">
+                                                <el-input v-model="commission_rules[levelItem.level][3].rate"
+                                                    size="mini" v-enter-number @input="inputChange">
+                                                    <template slot="append">%</template>
+                                                </el-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </el-form>
+    <div class="shopro-submit-container">
+        <div class="shopro-submit-button" @click="formSubmit()">确定</div>
+    </div>
+</div>
